@@ -4,6 +4,8 @@ import Ship from "./shipConstructor";
 class gameBoard {
   constructor() {
     this.board = [[]];
+    this.missedShots = [[]]; /* this variable needs to store the empty points
+                                missed during an attack */
   }
 
   placeShip(length, row, column, direction) {
@@ -22,6 +24,18 @@ class gameBoard {
       for (let j = row; j < length + row; j += 1) {
         this.board[j][column] = newShip;
       }
+    }
+  }
+
+  recieveAttack(coordinateX, coordinateY) {
+    if (this.board[coordinateX][coordinateY]) {
+      this.board[coordinateX][coordinateY].hit();
+      this.board[coordinateX][coordinateY] = undefined;
+      // this should change
+      // the value of the single ship hit
+    } else {
+      this.missedShots[coordinateX][coordinateY] =
+        "empty"; /* this could just be null but to get the point the value is 'empty' */
     }
   }
 }
