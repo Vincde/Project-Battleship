@@ -3,8 +3,30 @@ import Ship from "./shipConstructor";
 
 class gameBoard {
   constructor() {
-    this.board = [[]];
-    this.missedShots = [[]]; /* this variable needs to store the empty points
+    this.board = [
+      [undefined],
+      [undefined],
+      [undefined],
+      [undefined],
+      [undefined],
+      [undefined],
+      [undefined],
+      [undefined],
+      [undefined],
+      [undefined],
+    ];
+    this.missedShots = [
+      [undefined],
+      [undefined],
+      [undefined],
+      [undefined],
+      [undefined],
+      [undefined],
+      [undefined],
+      [undefined],
+      [undefined],
+      [undefined],
+    ]; /* this variable needs to store the empty points
                                 missed during an attack */
   }
 

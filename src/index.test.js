@@ -7,4 +7,9 @@ test("gameBoard works fine", () => {
 });
 // verification test for developer purposes
 
-test("gameBoard places ships fin");
+test("gameBoard places ships correctly", () => {
+  const ng = new gameBoard();
+
+  ng.placeShip(3, 2, 4, "horizontal");
+  expect(typeof ng.board[2][4]).toBe("object");
+});
