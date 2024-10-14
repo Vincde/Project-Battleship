@@ -1,7 +1,7 @@
 // eslint-disable-next-line import/no-named-as-default, import/no-named-as-default-member
 import Ship from "./shipConstructor";
 
-class gameBoard {
+class GameBoard {
   constructor() {
     this.board = [
       [undefined],
@@ -73,4 +73,4 @@ class gameBoard {
   }
 }
 
-export default gameBoard;
+export default GameBoard;
