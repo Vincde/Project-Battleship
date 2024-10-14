@@ -23,3 +23,13 @@ test("GameBoard attacks ship correctly", () => {
   expect(typeof ng.board[2][4]).toBe("undefined");
   expect(ng.missedShots[2][8]).toBe("empty");
 });
+
+test("verifyIfShipsAreAllSunk works correctly", () => {
+  const ng = new gameBoard();
+
+  ng.placeShip(3, 2, 4, "horizontal");
+  ng.recieveAttack(2, 4);
+  ng.recieveAttack(2, 5);
+  ng.recieveAttack(2, 6);
+  expect(ng.verifyIfShipsAreAllSunk()).toBe(true);
+});
