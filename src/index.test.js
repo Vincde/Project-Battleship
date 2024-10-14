@@ -1,4 +1,5 @@
 import GameBoard from "./mainConstructor/gameBoardConstructor.js";
+import Player from "./playerConstructor/players.js";
 
 test("gameBoard works fine", () => {
   const gg = new GameBoard();
@@ -32,4 +33,14 @@ test("verifyIfShipsAreAllSunk works correctly", () => {
   ng.recieveAttack(2, 5);
   ng.recieveAttack(2, 6);
   expect(ng.verifyIfShipsAreAllSunk()).toBe(true);
+});
+
+test("player class inserts the right name if undefined or not", () => {
+  const genericPlayer = new Player("hello");
+
+  expect(genericPlayer.name).toBe("hello");
+
+  const genericPlayer2 = new Player();
+
+  expect(genericPlayer2.name).toBe("computer");
 });
