@@ -33,6 +33,7 @@ class gameBoard {
   placeShip(length, row, column, direction) {
     const newShip = new Ship(length, 0, false);
     /* Here we create the ship object */
+    if (length > 5 || length < 2) return;
 
     if (direction === "vertical") {
       // If ship needs to be printed in vertical order
@@ -59,6 +60,16 @@ class gameBoard {
       this.missedShots[coordinateX][coordinateY] =
         "empty"; /* this could just be null but to get the point the value is 'empty' */
     }
+    this.verifyIfShipsAreAllSunk();
+  }
+
+  verifyIfShipsAreAllSunk() {
+    for (let i = 0; i < this.board.length; i += 1) {
+      for (let j = 0; j < this.board.length; j += 1) {
+        if (typeof this.board[i][j] === "object") return true;
+      }
+    }
+    return false;
   }
 }
 
