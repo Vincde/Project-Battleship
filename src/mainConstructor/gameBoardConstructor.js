@@ -1,6 +1,20 @@
 // eslint-disable-next-line import/no-named-as-default, import/no-named-as-default-member
 import Ship from "./shipConstructor";
 
+function verifyLength(length, row, column) {
+  if (length > 5 || length < 2) return true;
+
+  // row
+  if (row > 9 || row < 0) return true;
+  if (row + length > 9) return true;
+
+  // column
+  if (column > 9 || column < 0) return true;
+  if (column + length > 9) return true;
+
+  return false;
+}
+
 class GameBoard {
   constructor() {
     this.board = [
@@ -33,7 +47,7 @@ class GameBoard {
   placeShip(length, row, column, direction) {
     const newShip = new Ship(length, 0, false);
     /* Here we create the ship object */
-    if (length > 5 || length < 2) return;
+    if (verifyLength(length, row, column) === true) return false;
 
     if (direction === "vertical") {
       // If ship needs to be printed in vertical order
@@ -48,6 +62,8 @@ class GameBoard {
         this.board[j][column] = newShip;
       }
     }
+
+    return true;
   }
 
   recieveAttack(coordinateX, coordinateY) {
