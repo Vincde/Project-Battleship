@@ -1,0 +1,8 @@
+*{
+    border:2px solid red;
+}
+
+.gameboards{
+    display: flex;
+    justify-content: end;
+}
