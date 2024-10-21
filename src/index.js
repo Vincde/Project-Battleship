@@ -1,8 +1,11 @@
+/* eslint-disable import/no-named-as-default-member */
+/* eslint-disable import/no-named-as-default */
 import "./style.css";
-// eslint-disable-next-line import/no-named-as-default, import/no-named-as-default-member
 import Player from "./playerConstructor/players";
+import printBoards from "./userInterface/printBoards";
 
 function newGame() {
+  printBoards();
   const player1 = new Player("Marco");
   const player2 = new Player("Antonio");
 
