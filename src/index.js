@@ -2,7 +2,7 @@
 /* eslint-disable import/no-named-as-default */
 import "./style.css";
 import Player from "./playerConstructor/players";
-import printBoards from "./userInterface/printBoards";
+import printBoards, { fillBoardsWithShips } from "./userInterface/printBoards";
 
 function newGame() {
   printBoards();
@@ -22,6 +22,7 @@ function newGame() {
   player2.gameBoard.placeShip(2, 3, 3);
   player2.gameBoard.placeShip(2, 8, 1);
   player2.gameBoard.placeShip(2, 5, 7);
+  fillBoardsWithShips(player1, player2);
 }
 
 newGame();

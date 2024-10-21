@@ -13,6 +13,21 @@ function printBoards() {
   }
 }
 
-/* function fillBoardsWithShips(player1, player2) {} */
+/* ERROR PRESENT, NEEDS TO BE ADJUSTED */
+function fillBoardsWithShips(player1, player2) {
+  /* error into writing this */
+  const selectPlayer1 = document.querySelectorAll("#gameboard-1 div");
+  const selectPlayer2 = document.querySelectorAll("#gameboard-2 div");
+
+  for (let i = 0; i < 99; i += 1) {
+    if (typeof player1.gameBoard.board[i] === "object") {
+      selectPlayer1[i].textContent = "a"; /* temporary value */
+    }
+    if (typeof player2.gameBoard.board[i] === "object") {
+      selectPlayer2[i].textContent = "a";
+    }
+  }
+}
 
 export default printBoards;
+export { fillBoardsWithShips };
