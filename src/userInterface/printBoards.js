@@ -15,17 +15,22 @@ function printBoards() {
 
 /* ERROR PRESENT, NEEDS TO BE ADJUSTED */
 function fillBoardsWithShips(player1, player2) {
+  let counterTo99 = 0;
   /* error into writing this */
   const selectPlayer1 = document.querySelectorAll("#gameboard-1 div");
   const selectPlayer2 = document.querySelectorAll("#gameboard-2 div");
 
-  for (let i = 0; i < 99; i += 1) {
-    if (typeof player1.gameBoard.board[i] === "object") {
-      selectPlayer1[i].textContent = "a"; /* temporary value */
+  for (let i = 0; i < 10; i += 1) {
+    for (let j = 0; j < 10; j += 1) {
+      if (typeof player1.gameBoard.board[i][j] === "object") {
+        selectPlayer1[counterTo99].textContent = "A"; /* temporary value */
+      }
+      if (typeof player2.gameBoard.board[i][j] === "object") {
+        selectPlayer2[counterTo99].textContent = "A";
+      }
+      counterTo99 += 1;
     }
-    if (typeof player2.gameBoard.board[i] === "object") {
-      selectPlayer2[i].textContent = "a";
-    }
+    counterTo99 += 1;
   }
 }
 
