@@ -1,16 +1,21 @@
 // eslint-disable-next-line import/no-named-as-default, import/no-named-as-default-member
 import Ship from "./shipConstructor";
 
-function verifyLength(length, row, column) {
+function verifyLength(length, row, column, direction) {
   if (length > 5 || length < 2) return true;
 
-  // row
   if (row > 9 || row < 0) return true;
-  if (row + length > 9) return true;
-
-  // column
   if (column > 9 || column < 0) return true;
-  if (column + length > 9) return true;
+
+  // we need a way to distinguish between vertical and horizontal
+  // so that when for example a ship length 2 gets added
+  // and printed in a horizontal order
+  // it prints as expected not verifying that it goes out of bounds vertically
+  if (direction === "horizontal") {
+    if (column + length > 10) return true;
+  } else if (direction === "vertical") {
+    if (row + length > 10) return true;
+  }
 
   return false;
 }
@@ -47,19 +52,19 @@ class GameBoard {
   placeShip(length, row, column, direction) {
     const newShip = new Ship(length, 0, false);
     /* Here we create the ship object */
-    if (verifyLength(length, row, column) === true) return false;
+    if (verifyLength(length, row, column, direction) === true) return false;
 
     if (direction === "vertical") {
       // If ship needs to be printed in vertical order
       // this code changes only the column
-      for (let i = column; i < length + column; i += 1) {
-        this.board[row][i] = newShip;
+      for (let i = row; i < length + row; i += 1) {
+        this.board[i][column] = newShip;
       }
     } else if (direction === "horizontal") {
       // If ship needs to be printed in horizontal order
       // this code changes only the row
-      for (let j = row; j < length + row; j += 1) {
-        this.board[j][column] = newShip;
+      for (let j = column; j < length + column; j += 1) {
+        this.board[row][j] = newShip;
       }
     }
 

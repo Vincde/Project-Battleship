@@ -10,18 +10,15 @@ function newGame() {
   const player2 = new Player("Antonio");
 
   player1.gameBoard.placeShip(2, 2, 7, "horizontal");
-  player1.gameBoard.placeShip(2, 2, 1, "horizontal");
   player1.gameBoard.placeShip(2, 5, 7, "horizontal");
   player1.gameBoard.placeShip(2, 3, 3, "horizontal");
   player1.gameBoard.placeShip(2, 8, 1, "horizontal");
-  player1.gameBoard.placeShip(2, 5, 7, "horizontal");
 
-  player2.gameBoard.placeShip(2, 2, 7, "horizontal");
-  player2.gameBoard.placeShip(2, 2, 1, "horizontal");
-  player2.gameBoard.placeShip(2, 5, 7, "horizontal");
-  player2.gameBoard.placeShip(2, 3, 3, "horizontal");
-  player2.gameBoard.placeShip(2, 8, 1, "horizontal");
-  player2.gameBoard.placeShip(2, 5, 7, "horizontal");
+  player2.gameBoard.placeShip(2, 2, 7, "vertical");
+  player2.gameBoard.placeShip(2, 5, 7, "vertical");
+  player2.gameBoard.placeShip(2, 3, 3, "vertical");
+  player2.gameBoard.placeShip(2, 8, 1, "vertical");
+  player2.gameBoard.placeShip(2, 9, 1, "horizontal");
   fillBoardsWithShips(player1, player2);
 }
 

@@ -23,14 +23,13 @@ function fillBoardsWithShips(player1, player2) {
   for (let i = 0; i < 10; i += 1) {
     for (let j = 0; j < 10; j += 1) {
       if (typeof player1.gameBoard.board[i][j] === "object") {
-        selectPlayer1[counterTo99].textContent = "A"; /* temporary value */
+        selectPlayer1[counterTo99].textContent = "O"; /* temporary value */
       }
       if (typeof player2.gameBoard.board[i][j] === "object") {
-        selectPlayer2[counterTo99].textContent = "A";
+        selectPlayer2[counterTo99].textContent = "O";
       }
       counterTo99 += 1;
     }
-    counterTo99 += 1;
   }
 }
 
