@@ -15,6 +15,13 @@ test("gameBoard places ships correctly", () => {
   expect(typeof ng.board[2][4]).toBe("object");
 });
 
+test("gameBoard places ships correctly as player variable", () => {
+  const ng = new Player("ciro");
+
+  ng.gameBoard.placeShip(3, 2, 4, "horizontal");
+  expect(typeof ng.gameBoard.board[2][4]).toBe("object");
+});
+
 test("GameBoard attacks ship correctly", () => {
   const ng = new GameBoard();
 
