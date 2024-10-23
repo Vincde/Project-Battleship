@@ -1,5 +1,6 @@
 *{
     border:2px solid red;
+    /* margin:5px; */
 }
 
 .gameboards{
@@ -16,4 +17,8 @@
     width: 450px;
     display: flex;
     flex-wrap: wrap;
+}
+
+.score{
+    justify-self: start;
 }
