@@ -87,10 +87,10 @@ class GameBoard {
   verifyIfShipsAreAllSunk() {
     for (let i = 0; i < this.board.length; i += 1) {
       for (let j = 0; j < this.board.length; j += 1) {
-        if (typeof this.board[i][j] === "object") return true;
+        if (typeof this.board[i][j] === "object") return false;
       }
     }
-    return false;
+    return true;
   }
 }
 
