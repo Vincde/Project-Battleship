@@ -1,32 +1,28 @@
+import Ship from "../ship/ship";
+
 function gameBoard() {
+  const gameBoardTable = [[], [], [], [], [], [], [], [], [], []];
+
   function placeShip(x, y, length, direction) {
-    let count = 0;
-    const returningPos = [];
-    for (let i = 0; i < x; i += 1) {
-      for (let j = 0; j < 10; j += 1) {
-        count += 1;
+    const newShip = Ship();
+    gameBoardTable[x][y] = newShip;
+
+    if (direction === "vertical") {
+      for (let i = x + 1; i < length + x; i += 1) {
+        gameBoardTable[i][y] = newShip;
+      }
+    } else if (direction === "horizontal") {
+      for (let j = y + 1; j < length + y; j += 1) {
+        gameBoardTable[x][j] = newShip;
       }
     }
-    count += y - 1;
-
-    if (direction === "horizontal") {
-      for (let i = 0; i < length; i += 1) {
-        returningPos.push(count);
-        count += 1;
-      }
-    } else if (direction === "vertical") {
-      for (let w = 0; w < length; w += 1) {
-        returningPos.push(count);
-        count += 10;
-      }
-    }
-
-    count = 0;
-
-    return returningPos;
   }
 
-  return { placeShip };
+  function getShip(x, y) {
+    return gameBoardTable[x][y];
+  }
+
+  return { placeShip, getShip };
 }
 
 export default gameBoard;

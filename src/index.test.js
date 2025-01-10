@@ -2,9 +2,17 @@ import gameBoard from "./gameBoard/gameBoard";
 
 test("placeShip function works correctly", () => {
   const GB = gameBoard();
-  let result2 = [];
 
-  result2 = GB.placeShip(4, 5, 3, "vertical");
+  GB.placeShip(0, 2, 3, "horizontal");
 
-  expect(result2).toEqual([44, 54, 64]);
+  expect(typeof GB.getShip(0, 2)).toBe("object");
+  expect(typeof GB.getShip(0, 3)).toBe("object");
+  expect(typeof GB.getShip(0, 4)).toBe("object");
+  expect(GB.getShip(0, 5)).toBe(undefined);
+
+  GB.placeShip(1, 2, 3, "vertical");
+  expect(typeof GB.getShip(1, 2)).toBe("object");
+  expect(typeof GB.getShip(2, 2)).toBe("object");
+  expect(typeof GB.getShip(3, 2)).toBe("object");
+  expect(GB.getShip(4, 2)).toBe(undefined);
 });
