@@ -60,12 +60,32 @@ function gameBoard() {
     return gameBoardTable[x][y];
   }
 
+  function allShipsHaveBeenSunk() {
+    for (let i = 0; i < 10; i += 1) {
+      for (let j = 0; j < 10; j += 1) {
+        if (typeof gameBoardTable[i][j] === "object") return false;
+      }
+    }
+    return true;
+  }
+
+  function clearAll() {
+    for (let i = 0; i < 10; i += 1) {
+      for (let j = 0; j < 10; j += 1) {
+        gameBoardTable[i][j] = undefined;
+      }
+    }
+  }
+
   function recieveAttack(x, y) {
     if (x < 0 || x > 9 || y < 0 || y > 9) return false;
 
     if (typeof gameBoardTable[x][y] === "object") {
       gameBoardTable[x][y].hit();
       gameBoardTable[x][y] = undefined;
+      if (allShipsHaveBeenSunk() === true) {
+        clearAll();
+      }
       return true;
     }
     gameBoardTable[x][y] = "miss";
