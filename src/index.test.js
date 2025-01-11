@@ -27,3 +27,5 @@ test("The verifyData function correctly discards wrong inputs", () => {
   expect(GB.placeShip(3, 4, 2, "horizontal")).toBe(true);
   expect(GB.placeShip(0, 3, 3, "horizontal")).toBe(false);
 });
+
+test("recieveAttack function works correctly", () => {});

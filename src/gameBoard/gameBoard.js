@@ -60,7 +60,19 @@ function gameBoard() {
     return gameBoardTable[x][y];
   }
 
-  return { placeShip, getShip };
+  function recieveAttack(x, y) {
+    if (x < 0 || x > 9 || y < 0 || y > 9) return false;
+
+    if (typeof gameBoardTable[x][y] === "object") {
+      gameBoardTable[x][y].hit();
+      return true;
+    }
+    gameBoardTable[x][y] = "miss";
+
+    return false;
+  }
+
+  return { placeShip, getShip, recieveAttack };
 }
 
 export default gameBoard;
