@@ -16,3 +16,14 @@ test("placeShip function works correctly", () => {
   expect(typeof GB.getShip(3, 2)).toBe("object");
   expect(GB.getShip(4, 2)).toBe(undefined);
 });
+
+test("The verifyData function correctly discards wrong inputs", () => {
+  const GB = gameBoard();
+
+  expect(GB.placeShip(0, 9, 3, "horizontal")).toBe(false);
+  expect(GB.placeShip(8, 3, 3, "vertical")).toBe(false);
+  expect(GB.placeShip(0, 9, 3, "horizontalwe")).toBe(false);
+  GB.placeShip(0, 2, 3, "horizontal");
+  expect(GB.placeShip(3, 4, 2, "horizontal")).toBe(true);
+  expect(GB.placeShip(0, 3, 3, "horizontal")).toBe(false);
+});
