@@ -65,6 +65,7 @@ function gameBoard() {
 
     if (typeof gameBoardTable[x][y] === "object") {
       gameBoardTable[x][y].hit();
+      gameBoardTable[x][y] = undefined;
       return true;
     }
     gameBoardTable[x][y] = "miss";
