@@ -1,6 +1,6 @@
 import "./style.css";
 import Player from "./player/player";
-import UI from "./userInterface/modules";
+import UI from "./userInterface/UI";
 
 function main() {
   const userInterface = UI();

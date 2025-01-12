@@ -1,0 +1,32 @@
+*{
+    box-sizing:border-box;
+}
+
+html,body{
+    height: 100%;
+}
+
+.gameBoard{
+    display: flex;
+    justify-content: center;
+    margin-top: 3rem;
+    width: 80%;
+    gap:10%;
+}
+
+.gameBoard__player1,
+.gameBoard__player2{
+    width: 40%;
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.gameBoard__player1 div,
+.gameBoard__player2 div{
+    width: 9%;  /* contrary to the theorical way of doing this */
+    height: 30px;
+    border: 2px solid black;
+    margin:2px;
+}
+
+
