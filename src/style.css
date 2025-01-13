@@ -20,12 +20,10 @@ html,body{
     flex-wrap: wrap;
 }
 
-.gameBoard__player1 div,
-.gameBoard__player2 div{
-    width: 9%;  /* contrary to the theorical way of doing this */
+.gameBoard__squares{
+    width: 10%;
     height: 30px;
     border: 2px solid black;
-    margin:2px;
 }
 
 
