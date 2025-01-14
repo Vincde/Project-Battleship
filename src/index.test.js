@@ -34,7 +34,7 @@ test("recieveAttack function works correctly", () => {
   GB.placeShip(0, 2, 3, "horizontal");
 
   expect(GB.recieveAttack(0, 2)).toBe(true);
-  expect(GB.getShip(0, 2)).toBe(undefined);
+  expect(GB.getShip(0, 2)).toBe("hit");
 
   expect(GB.recieveAttack(2, 3)).toBe(false);
   expect(GB.getShip(2, 3)).toBe("miss");
