@@ -20,22 +20,26 @@ function UI() {
     let count = 0;
     for (let i = 0; i < 10; i += 1) {
       for (let j = 0; j < 10; j += 1) {
-        if (typeof GB1.getShip[i][j] === "object") {
+        if (typeof GB1.getShip(i, j) === "object") {
           // object to be inserted
           player1[count].textContent = "SHIP";
-        } else if (GB1.getShip[i][j] === "miss") {
+        } else if (GB1.getShip(i, j) === "miss") {
           player1[count].textContent = "miss";
-        } else if (GB1.getShip[i][j] === "hit") {
+        } else if (GB1.getShip(i, j) === "hit") {
           player1[count].textContent = "hit";
+        } else if (GB1.getShip(i, j) === undefined) {
+          player1[count].textContent = "";
         }
 
-        if (typeof GB2.getShip[i][j] === "object") {
+        if (typeof GB2.getShip(i, j) === "object") {
           // object to be inserted
           player2[count].textContent = "SHIP";
-        } else if (GB2.getShip[i][j] === "miss") {
+        } else if (GB2.getShip(i, j) === "miss") {
           player2[count].textContent = "miss";
-        } else if (GB2.getShip[i][j] === "hit") {
+        } else if (GB2.getShip(i, j) === "hit") {
           player2[count].textContent = "hit";
+        } else if (GB2.getShip(i, j) === undefined) {
+          player2[count].textContent = "";
         }
 
         count += 1;
@@ -66,7 +70,7 @@ function UI() {
     }
   }
 
-  return { paintBoards, initiateBox };
+  return { paintBoards, initiateBox, reloadBoard };
 }
 
 export default UI;

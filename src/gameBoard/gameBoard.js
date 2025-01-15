@@ -85,9 +85,11 @@ function gameBoard() {
       gameBoardTable[x][y] = "hit";
       if (allShipsHaveBeenSunk() === true) {
         clearAll();
+        return true;
       }
-      return true;
+      return false;
     }
+    if (typeof gameBoardTable[x][y] === "string") return false;
     gameBoardTable[x][y] = "miss";
 
     return false;

@@ -18,6 +18,9 @@ function main() {
   player2.playerGameBoard.placeShip(0, 3, 3, "vertical");
   player2.playerGameBoard.placeShip(0, 4, 3, "vertical");
   player2.playerGameBoard.placeShip(0, 5, 3, "vertical");
+
+  userInterface.initiateBox(player1.playerGameBoard, player2.playerGameBoard);
+  userInterface.reloadBoard(player1.playerGameBoard, player2.playerGameBoard);
 }
 
 main();
