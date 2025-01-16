@@ -83,11 +83,7 @@ function gameBoard() {
     if (typeof gameBoardTable[x][y] === "object") {
       gameBoardTable[x][y].hit();
       gameBoardTable[x][y] = "hit";
-      if (allShipsHaveBeenSunk() === true) {
-        clearAll();
-        return true;
-      }
-      return false;
+      return true;
     }
     if (typeof gameBoardTable[x][y] === "string") return false;
     gameBoardTable[x][y] = "miss";
@@ -95,7 +91,7 @@ function gameBoard() {
     return false;
   }
 
-  return { placeShip, getShip, recieveAttack };
+  return { placeShip, getShip, recieveAttack, allShipsHaveBeenSunk, clearAll };
 }
 
 export default gameBoard;

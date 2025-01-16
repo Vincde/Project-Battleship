@@ -57,11 +57,19 @@ function UI() {
       for (let j = 0; j < 10; j += 1) {
         player1[count].addEventListener("click", () => {
           GBPlayer1.recieveAttack(i, j);
+          if (GBPlayer1.allShipsHaveBeenSunk() === true) {
+            GBPlayer1.clearAll();
+            GBPlayer2.clearAll();
+          }
           reloadBoard(GBPlayer1, GBPlayer2);
         });
 
         player2[count].addEventListener("click", () => {
           GBPlayer2.recieveAttack(i, j);
+          if (GBPlayer2.allShipsHaveBeenSunk() === true) {
+            GBPlayer1.clearAll();
+            GBPlayer2.clearAll();
+          }
           reloadBoard(GBPlayer1, GBPlayer2);
         });
 
