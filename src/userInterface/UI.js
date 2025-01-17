@@ -47,6 +47,23 @@ function UI() {
     }
   }
 
+  function obscureBoard() {
+    const player1 = document.querySelector(".gameBoard__player1");
+    const player2 = document.querySelector(".gameBoard__player2");
+
+    if (player1.style.visibility === "hidden") {
+      player1.style.visibility = "visible";
+    } else if (player1.style.visibility === "visible") {
+      player1.style.visibility = "hidden";
+    }
+
+    if (player2.style.visibility === "hidden") {
+      player2.style.visibility = "visible";
+    } else if (player2.style.visibility === "visible") {
+      player2.style.visibility = "hidden";
+    }
+  }
+
   function initiateBox(GBPlayer1, GBPlayer2) {
     const player1 = document.querySelectorAll(".gameBoard__player1 > div");
     const player2 = document.querySelectorAll(".gameBoard__player2 > div");
@@ -56,21 +73,23 @@ function UI() {
     for (let i = 0; i < 10; i += 1) {
       for (let j = 0; j < 10; j += 1) {
         player1[count].addEventListener("click", () => {
-          GBPlayer1.recieveAttack(i, j);
-          if (GBPlayer1.allShipsHaveBeenSunk() === true) {
-            GBPlayer1.clearAll();
-            GBPlayer2.clearAll();
-          }
-          reloadBoard(GBPlayer1, GBPlayer2);
-        });
-
-        player2[count].addEventListener("click", () => {
           GBPlayer2.recieveAttack(i, j);
           if (GBPlayer2.allShipsHaveBeenSunk() === true) {
             GBPlayer1.clearAll();
             GBPlayer2.clearAll();
           }
           reloadBoard(GBPlayer1, GBPlayer2);
+          obscureBoard();
+        });
+
+        player2[count].addEventListener("click", () => {
+          GBPlayer1.recieveAttack(i, j);
+          if (GBPlayer1.allShipsHaveBeenSunk() === true) {
+            GBPlayer1.clearAll();
+            GBPlayer2.clearAll();
+          }
+          reloadBoard(GBPlayer1, GBPlayer2);
+          obscureBoard();
         });
 
         count += 1;
@@ -78,7 +97,7 @@ function UI() {
     }
   }
 
-  return { paintBoards, initiateBox, reloadBoard };
+  return { paintBoards, initiateBox, reloadBoard, obscureBoard };
 }
 
 export default UI;

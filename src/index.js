@@ -21,6 +21,14 @@ function main() {
 
   userInterface.initiateBox(player1.playerGameBoard, player2.playerGameBoard);
   userInterface.reloadBoard(player1.playerGameBoard, player2.playerGameBoard);
+
+  // Here finishes the positioning phase.
+  // now turns have to take over.
+
+  const uiPlayer1 = document.querySelector(".gameBoard__player1");
+  const uiPlayer2 = document.querySelector(".gameBoard__player2");
+  uiPlayer1.style.visibility = "visible";
+  uiPlayer2.style.visibility = "hidden";
 }
 
 main();
