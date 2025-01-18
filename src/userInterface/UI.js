@@ -64,7 +64,23 @@ function UI() {
     }
   }
 
-  function initiateBox(GBPlayer1, GBPlayer2) {
+  function makeComputerChoice() {
+    const player1 = document.querySelectorAll(".gameBoard__player1 > div");
+    const player2 = document.querySelectorAll(".gameBoard__player2 > div");
+
+    let count = Math.floor(Math.random() * 100);
+
+    while (
+      player1[count].textContent === "hit" ||
+      player1[count].textContent === "miss"
+    ) {
+      count = Math.floor(Math.random() * 100);
+    }
+
+    player2[count].click();
+  }
+
+  function initiateBox(GBPlayer1, GBPlayer2, player2Name) {
     const player1 = document.querySelectorAll(".gameBoard__player1 > div");
     const player2 = document.querySelectorAll(".gameBoard__player2 > div");
 
@@ -80,6 +96,9 @@ function UI() {
           }
           reloadBoard(GBPlayer1, GBPlayer2);
           obscureBoard();
+          if (player2Name === "computer") {
+            makeComputerChoice(GBPlayer1);
+          }
         });
 
         player2[count].addEventListener("click", () => {

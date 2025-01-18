@@ -19,7 +19,11 @@ function main() {
   player2.playerGameBoard.placeShip(0, 4, 3, "vertical");
   player2.playerGameBoard.placeShip(0, 5, 3, "vertical");
 
-  userInterface.initiateBox(player1.playerGameBoard, player2.playerGameBoard);
+  userInterface.initiateBox(
+    player1.playerGameBoard,
+    player2.playerGameBoard,
+    player2.name
+  );
   userInterface.reloadBoard(player1.playerGameBoard, player2.playerGameBoard);
 
   // Here finishes the positioning phase.
