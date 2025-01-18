@@ -25,8 +25,10 @@ function UI() {
           player1[count].textContent = "SHIP";
         } else if (GB1.getShip(i, j) === "miss") {
           player1[count].textContent = "miss";
+          player2[count].style.backgroundColor = "red";
         } else if (GB1.getShip(i, j) === "hit") {
           player1[count].textContent = "hit";
+          player2[count].style.backgroundColor = "green";
         } else if (GB1.getShip(i, j) === undefined) {
           player1[count].textContent = "";
         }
@@ -36,8 +38,10 @@ function UI() {
           player2[count].textContent = "SHIP";
         } else if (GB2.getShip(i, j) === "miss") {
           player2[count].textContent = "miss";
+          player1[count].style.backgroundColor = "red";
         } else if (GB2.getShip(i, j) === "hit") {
           player2[count].textContent = "hit";
+          player1[count].style.backgroundColor = "green";
         } else if (GB2.getShip(i, j) === undefined) {
           player2[count].textContent = "";
         }
