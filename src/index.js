@@ -5,6 +5,7 @@ import UI from "./userInterface/UI";
 function main() {
   const userInterface = UI();
   userInterface.paintBoards();
+  /* const finishPositioningShips = document.querySelector(".startGame-button"); */
 
   const player1 = Player("Antonio");
   const player2 = Player("franco");
@@ -24,6 +25,7 @@ function main() {
     player2.playerGameBoard,
     player2.name
   );
+
   userInterface.reloadBoard(player1.playerGameBoard, player2.playerGameBoard);
 
   // Here finishes the positioning phase.
