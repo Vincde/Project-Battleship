@@ -127,7 +127,8 @@ function UI() {
             GBPlayer2.clearAll();
           }
           reloadBoard(GBPlayer1, GBPlayer2);
-          obscureBoard();
+          setTimeout(obscureBoard, 1000);
+          /* obscureBoard(); */
           if (player2Name === "computer") {
             makeComputerChoice();
           }
@@ -140,7 +141,8 @@ function UI() {
             GBPlayer2.clearAll();
           }
           reloadBoard(GBPlayer1, GBPlayer2);
-          obscureBoard();
+          setTimeout(obscureBoard, 1000);
+          /* obscureBoard(); */
         });
 
         count += 1;
