@@ -101,7 +101,7 @@ function UI() {
           reloadBoard(GBPlayer1, GBPlayer2);
           obscureBoard();
           if (player2Name === "computer") {
-            makeComputerChoice(GBPlayer1);
+            makeComputerChoice();
           }
         });
 
