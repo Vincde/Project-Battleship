@@ -2,20 +2,36 @@ function UI() {
   function paintBoards() {
     const player1 = document.querySelector(".gameBoard__player1");
     const player2 = document.querySelector(".gameBoard__player2");
+    const player1Choice = document.querySelector(".gameBoard__player1__choice");
+    const player2Choice = document.querySelector(".gameBoard__player2__choice");
 
     for (let i = 0; i < 100; i += 1) {
       const newContainer = document.createElement("div");
       const newContainer2 = document.createElement("div");
+      const newContainerChoice = document.createElement("div");
+      const newContainer2Choice = document.createElement("div");
+
       newContainer.classList.add("gameBoard__squares");
       newContainer2.classList.add("gameBoard__squares");
+      newContainerChoice.classList.add("gameBoard__squares");
+      newContainer2Choice.classList.add("gameBoard__squares");
+
       player1.appendChild(newContainer);
       player2.appendChild(newContainer2);
+      player1Choice.appendChild(newContainerChoice);
+      player2Choice.appendChild(newContainer2Choice);
     }
   }
 
   function reloadBoard(GB1, GB2) {
     const player1 = document.querySelectorAll(".gameBoard__player1 div");
     const player2 = document.querySelectorAll(".gameBoard__player2 div");
+    const player1Choice = document.querySelectorAll(
+      ".gameBoard__player1__choice > div"
+    );
+    const player2Choice = document.querySelectorAll(
+      ".gameBoard__player2__choice > div"
+    );
 
     let count = 0;
     for (let i = 0; i < 10; i += 1) {
@@ -25,10 +41,10 @@ function UI() {
           player1[count].textContent = "SHIP";
         } else if (GB1.getShip(i, j) === "miss") {
           player1[count].textContent = "miss";
-          player2[count].style.backgroundColor = "red";
+          player2Choice[count].style.backgroundColor = "red";
         } else if (GB1.getShip(i, j) === "hit") {
           player1[count].textContent = "hit";
-          player2[count].style.backgroundColor = "green";
+          player2Choice[count].style.backgroundColor = "green";
         } else if (GB1.getShip(i, j) === undefined) {
           player1[count].textContent = "";
         }
@@ -38,10 +54,10 @@ function UI() {
           player2[count].textContent = "SHIP";
         } else if (GB2.getShip(i, j) === "miss") {
           player2[count].textContent = "miss";
-          player1[count].style.backgroundColor = "red";
+          player1Choice[count].style.backgroundColor = "red";
         } else if (GB2.getShip(i, j) === "hit") {
           player2[count].textContent = "hit";
-          player1[count].style.backgroundColor = "green";
+          player1Choice[count].style.backgroundColor = "green";
         } else if (GB2.getShip(i, j) === undefined) {
           player2[count].textContent = "";
         }
@@ -54,23 +70,31 @@ function UI() {
   function obscureBoard() {
     const player1 = document.querySelector(".gameBoard__player1");
     const player2 = document.querySelector(".gameBoard__player2");
+    const player1Choice = document.querySelector(".gameBoard__player1__choice");
+    const player2Choice = document.querySelector(".gameBoard__player2__choice");
 
     if (player1.style.visibility === "hidden") {
       player1.style.visibility = "visible";
+      player1Choice.style.visibility = "visible";
     } else if (player1.style.visibility === "visible") {
       player1.style.visibility = "hidden";
+      player1Choice.style.visibility = "hidden";
     }
 
     if (player2.style.visibility === "hidden") {
       player2.style.visibility = "visible";
+      player2Choice.style.visibility = "visible";
     } else if (player2.style.visibility === "visible") {
       player2.style.visibility = "hidden";
+      player2Choice.style.visibility = "hidden";
     }
   }
 
   function makeComputerChoice() {
     const player1 = document.querySelectorAll(".gameBoard__player1 > div");
-    const player2 = document.querySelectorAll(".gameBoard__player2 > div");
+    const player2 = document.querySelectorAll(
+      ".gameBoard__player2__choice > div"
+    );
 
     let count = Math.floor(Math.random() * 100);
 
@@ -85,8 +109,12 @@ function UI() {
   }
 
   function initiateBox(GBPlayer1, GBPlayer2, player2Name) {
-    const player1 = document.querySelectorAll(".gameBoard__player1 > div");
-    const player2 = document.querySelectorAll(".gameBoard__player2 > div");
+    const player1 = document.querySelectorAll(
+      ".gameBoard__player1__choice > div"
+    );
+    const player2 = document.querySelectorAll(
+      ".gameBoard__player2__choice > div"
+    );
 
     let count = 0;
 

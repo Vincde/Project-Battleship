@@ -7,7 +7,7 @@ function main() {
   userInterface.paintBoards();
 
   const player1 = Player("Antonio");
-  const player2 = Player();
+  const player2 = Player("franco");
 
   player1.playerGameBoard.placeShip(0, 2, 3, "horizontal");
   player1.playerGameBoard.placeShip(1, 2, 3, "horizontal");
@@ -31,8 +31,12 @@ function main() {
 
   const uiPlayer1 = document.querySelector(".gameBoard__player1");
   const uiPlayer2 = document.querySelector(".gameBoard__player2");
+  const uiPlayer1Choice = document.querySelector(".gameBoard__player1__choice");
+  const uiPlayer2Choice = document.querySelector(".gameBoard__player2__choice");
   uiPlayer1.style.visibility = "visible";
+  uiPlayer1Choice.style.visibility = "visible";
   uiPlayer2.style.visibility = "hidden";
+  uiPlayer2Choice.style.visibility = "hidden";
 }
 
 main();
