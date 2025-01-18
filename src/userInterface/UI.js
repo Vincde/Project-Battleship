@@ -109,6 +109,7 @@ function UI() {
   }
 
   function initiateBox(GBPlayer1, GBPlayer2, player2Name) {
+    const score = document.querySelector(".score");
     const player1 = document.querySelectorAll(
       ".gameBoard__player1__choice > div"
     );
@@ -125,6 +126,7 @@ function UI() {
           if (GBPlayer2.allShipsHaveBeenSunk() === true) {
             GBPlayer1.clearAll();
             GBPlayer2.clearAll();
+            score.textContent = "PLAYER 1 WINS";
           }
           reloadBoard(GBPlayer1, GBPlayer2);
           setTimeout(obscureBoard, 1000);
@@ -139,6 +141,7 @@ function UI() {
           if (GBPlayer1.allShipsHaveBeenSunk() === true) {
             GBPlayer1.clearAll();
             GBPlayer2.clearAll();
+            score.textContent = "PLAYER 2 WINS";
           }
           reloadBoard(GBPlayer1, GBPlayer2);
           setTimeout(obscureBoard, 1000);
