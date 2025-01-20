@@ -9,8 +9,8 @@ function main() {
   const player1 = Player("Antonio");
   const player2 = Player("franco");
 
-  player1.playerGameBoard.placeShip(0, 2, 3, "horizontal");
-  player2.playerGameBoard.placeShip(0, 2, 3, "horizontal");
+  player1.playerGameBoard.placeShip(5, 2, 3, "horizontal");
+  player2.playerGameBoard.placeShip(4, 2, 3, "horizontal");
 
   userInterface.initiateBox(
     player1.playerGameBoard,
