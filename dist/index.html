@@ -11,11 +11,27 @@
 
     <div class="ship-creation-container">
       <p>Insert Ship into: <br></p>
+      
       <label for="row">Row: </label>
       <input type="number" id="row" max="9" min="0">
+      
       <label for="column">Column</label>
       <input type="number" id="column" max="9" min="0">
-      <button type="button" class="create-button">Create</button>
+      
+      <label for="length">Length</label>
+      <input type="number" id="length" max="4" min="1">
+
+      <select name="direction" id="direction">
+        <option value="horizontal">Horizontal</option>
+        <option value="vertical">Vertical</option>
+      </select>
+      
+      <select name="player" id="player">
+        <option value="player1">Player 1</option>
+        <option value="player2">Player 2</option>
+      </select>
+      
+      <button type="button" class="create-ship-button">Create</button>
       <button type="button" class="startGame-button">Start Game</button>
     </div>
 

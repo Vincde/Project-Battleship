@@ -7,7 +7,7 @@ function gameBoard() {
     // i need to verify if all the data are correct
     // and don't go into a not acceptable state
 
-    if (x > 9 || x < 0 || y > 9 || y < 0 || length < 0 || length > 5) {
+    if (x > 9 || x < 0 || y > 9 || y < 0 || length <= 0 || length > 5) {
       // i need a method to verify if the inserted data are incorrect
       return false;
     }

@@ -108,6 +108,36 @@ function UI() {
     player2[count].click();
   }
 
+  function createShipButtonActive(player1Board, player2Board) {
+    const createShipButton = document.querySelector(".create-ship-button");
+    const rowInput = document.querySelector("#row");
+    const columnInput = document.querySelector("#column");
+    const lengthInput = document.querySelector("#length");
+    const directionInput = document.querySelector("#direction");
+    const playerInput = document.querySelector("#player");
+
+    createShipButton.addEventListener("click", () => {
+      const row = parseInt(rowInput.value, 10);
+      const column = parseInt(columnInput.value, 10);
+      const length = parseInt(lengthInput.value, 10);
+
+      if (
+        row &&
+        column &&
+        length &&
+        directionInput.value &&
+        playerInput.value
+      ) {
+        if (playerInput.value === "player1") {
+          player1Board.placeShip(row, column, length, directionInput.value);
+        } else if (playerInput.value === "player2") {
+          player2Board.placeShip(row, column, length, directionInput.value);
+        }
+        reloadBoard(player1Board, player2Board);
+      }
+    });
+  }
+
   function initiateBox(GBPlayer1, GBPlayer2, player2Name) {
     const score = document.querySelector(".score");
     const player1 = document.querySelectorAll(
@@ -153,7 +183,13 @@ function UI() {
     }
   }
 
-  return { paintBoards, initiateBox, reloadBoard, obscureBoard };
+  return {
+    paintBoards,
+    initiateBox,
+    reloadBoard,
+    obscureBoard,
+    createShipButtonActive,
+  };
 }
 
 export default UI;
