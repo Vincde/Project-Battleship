@@ -33,6 +33,10 @@ function main() {
       // Here finishes the positioning phase.
       // now turns have to take over.
 
+      const shipCreationContainer = document.querySelector(
+        ".ship-creation-container"
+      );
+
       const uiPlayer1 = document.querySelector(".gameBoard__player1");
       const uiPlayer2 = document.querySelector(".gameBoard__player2");
       const uiPlayer1Choice = document.querySelector(
@@ -45,6 +49,7 @@ function main() {
       uiPlayer1Choice.style.visibility = "visible";
       uiPlayer2.style.visibility = "hidden";
       uiPlayer2Choice.style.visibility = "hidden";
+      shipCreationContainer.style.visibility = "hidden";
     },
     { once: true }
   );
