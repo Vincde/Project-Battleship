@@ -29,4 +29,20 @@ html,body{
     border: 2px solid black;
 }
 
+.startGame-button{
+    margin-top: 3rem;
+}
 
+
+.box-dimension{
+    border:2px solid red;
+    width: 2rem;
+    height: 2rem;
+}
+
+
+.drag-n-drop{
+    margin-top:2rem;
+    display: flex;
+    gap:30px;
+}

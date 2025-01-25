@@ -30,8 +30,25 @@
         <option value="player1">Player 1</option>
         <option value="player2">Player 2</option>
       </select>
-      
+
       <button type="button" class="create-ship-button">Create</button>
+
+      <div class="drag-n-drop">
+        <select name="drag-n-drop__direction" id="drag-n-drop__direction">
+          <option value="horizontal">Horizontal</option>
+          <option value="vertical">Vertical</option>
+        </select>
+        <select name="drag-n-drop__dimension" id="drag-n-drop__dimension">
+          <option value="2">2</option>
+          <option value="3">3</option>
+          <option value="4">4</option>
+          <option value="5">5</option>
+        </select>
+
+        <div class="box-dimension" draggable="true"></div>
+      </div>
+      
+      <br>
       <button type="button" class="startGame-button">Start Game</button>
     </div>
 

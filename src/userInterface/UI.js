@@ -183,12 +183,69 @@ function UI() {
     }
   }
 
+  function startDrag(player1Board, player2Board) {
+    const dragElement = document.querySelector(".box-dimension");
+    const dragDirection = document.querySelector("#drag-n-drop__direction");
+    const dragDimension = document.querySelector("#drag-n-drop__dimension");
+
+    dragElement.addEventListener("dragstart", (ev) => {
+      ev.dataTransfer.setData("text", dragDirection.value);
+      ev.dataTransfer.setData("text1", dragDimension.value);
+    });
+
+    const gameBoard1 = document.querySelectorAll(".gameBoard__player1 div");
+    const gameBoard2 = document.querySelectorAll(".gameBoard__player2 div");
+
+    let count = 0;
+
+    for (let i = 0; i < 10; i += 1) {
+      for (let j = 0; j < 10; j += 1) {
+        gameBoard1[count].addEventListener("dragover", (ev) => {
+          ev.preventDefault();
+        });
+        gameBoard2[count].addEventListener("dragover", (ev) => {
+          ev.preventDefault();
+        });
+        count += 1;
+      }
+    }
+
+    count = 0;
+
+    for (let i = 0; i < 10; i += 1) {
+      for (let j = 0; j < 10; j += 1) {
+        gameBoard1[count].addEventListener("drop", (ev) => {
+          player1Board.placeShip(
+            i,
+            j,
+            parseInt(ev.dataTransfer.getData("text1"), 10),
+            ev.dataTransfer.getData("text")
+          );
+          reloadBoard(player1Board, player2Board);
+          ev.preventDefault();
+        });
+        gameBoard2[count].addEventListener("drop", (ev) => {
+          player2Board.placeShip(
+            i,
+            j,
+            parseInt(ev.dataTransfer.getData("text1"), 10),
+            ev.dataTransfer.getData("text")
+          );
+          reloadBoard(player1Board, player2Board);
+          ev.preventDefault();
+        });
+        count += 1;
+      }
+    }
+  }
+
   return {
     paintBoards,
     initiateBox,
     reloadBoard,
     obscureBoard,
     createShipButtonActive,
+    startDrag,
   };
 }
 

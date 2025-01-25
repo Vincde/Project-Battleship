@@ -16,6 +16,8 @@ function main() {
     player2.playerGameBoard
   );
 
+  userInterface.startDrag(player1.playerGameBoard, player2.playerGameBoard);
+
   startButton.addEventListener(
     "click",
     () => {
