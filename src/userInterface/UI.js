@@ -1,4 +1,5 @@
 function UI() {
+  const computerStack = [];
   function paintBoards() {
     const player1 = document.querySelector(".gameBoard__player1");
     const player2 = document.querySelector(".gameBoard__player2");
@@ -105,7 +106,35 @@ function UI() {
       count = Math.floor(Math.random() * 100);
     }
 
-    player2[count].click();
+    if (computerStack.length <= 0) {
+      if (player1[count].textContent === "SHIP") {
+        player2[count].click();
+        computerStack.push(count + 1);
+        computerStack.push(count + 2);
+        computerStack.push(count + 3);
+        computerStack.push(count + 4);
+        computerStack.push(count - 1);
+        computerStack.push(count - 2);
+        computerStack.push(count - 3);
+        computerStack.push(count - 4);
+        computerStack.push(count + 10);
+        computerStack.push(count + 20);
+        computerStack.push(count + 30);
+        computerStack.push(count + 40);
+        computerStack.push(count - 10);
+        computerStack.push(count - 20);
+        computerStack.push(count - 30);
+        computerStack.push(count - 40);
+      } else {
+        player2[count].click();
+      }
+    } else {
+      if (computerStack[0] > 99 || computerStack[0] < 0) {
+        computerStack.shift();
+        return;
+      }
+      player2[computerStack.shift()].click();
+    }
   }
 
   function createShipButtonActive(player1Board, player2Board) {
