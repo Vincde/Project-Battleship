@@ -4,6 +4,23 @@
 
 html,body{
     height: 100%;
+    background-color: #23486A;
+    font-size: 1.2rem;
+    font-style: italic;
+    color:whitesmoke;
+}
+
+input,option,select,.box-dimension{
+    background-color: #efb036;
+}
+
+button{
+    background: none;
+    border:none;
+    background-color: #efb036;
+    border-radius: 100px;
+    font-style: italic;
+    color: #a94a4a;
 }
 
 .gameBoard,
@@ -26,7 +43,8 @@ html,body{
 .gameBoard__squares{
     width: 10%;
     height: 30px;
-    border: 2px solid black;
+    border: 2px solid #818c78;
+    background: linear-gradient(to right ,#4c7b8b,#23486a,#3b6790);
 }
 
 .startGame-button{
@@ -35,7 +53,7 @@ html,body{
 
 
 .box-dimension{
-    border:2px solid red;
+    border:2px solid #4c7b8b;
     width: 2rem;
     height: 2rem;
 }
