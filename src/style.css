@@ -8,6 +8,7 @@ html,body{
     font-size: 1.2rem;
     font-style: italic;
     color:whitesmoke;
+    
 }
 
 input,option,select,.box-dimension{
@@ -45,6 +46,7 @@ button{
     height: 30px;
     border: 2px solid #818c78;
     background: linear-gradient(to right ,#4c7b8b,#23486a,#3b6790);
+    color:rgba(0, 0, 0, 0);  /* all the phrases and text are hidden */
 }
 
 .startGame-button{
