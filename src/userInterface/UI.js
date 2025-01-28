@@ -1,3 +1,5 @@
+import imageShip from "../img/cruise.png";
+
 function UI() {
   const computerStack = [];
   function paintBoards() {
@@ -40,13 +42,15 @@ function UI() {
         if (typeof GB1.getShip(i, j) === "object") {
           // object to be inserted
           player1[count].textContent = "SHIP";
-          player1[count].style.backgroundImage = 'url("../src/img/cruise.png")';
+          player1[count].style.backgroundImage = `url(${imageShip})`;
           player1[count].style.backgroundSize = "contain";
+          player1[count].style.backgroundRepeat = "no-repeat";
         } else if (GB1.getShip(i, j) === "miss") {
           player1[count].textContent = "miss";
           player2Choice[count].style.background = "#d2665a";
         } else if (GB1.getShip(i, j) === "hit") {
           player1[count].textContent = "hit";
+          player1[count].style.backgroundImage = "none";
           player2Choice[count].style.background = "#5b913b";
         } else if (GB1.getShip(i, j) === undefined) {
           player1[count].textContent = "";
@@ -55,13 +59,15 @@ function UI() {
         if (typeof GB2.getShip(i, j) === "object") {
           // object to be inserted
           player2[count].textContent = "SHIP";
-          player2[count].style.backgroundImage = 'url("../src/img/cruise.png")';
+          player2[count].style.backgroundImage = `url(${imageShip})`;
           player2[count].style.backgroundSize = "contain";
+          player2[count].style.backgroundRepeat = "no-repeat";
         } else if (GB2.getShip(i, j) === "miss") {
           player2[count].textContent = "miss";
           player1Choice[count].style.background = "#d2665a";
         } else if (GB2.getShip(i, j) === "hit") {
           player2[count].textContent = "hit";
+          player2[count].style.backgroundImage = "none";
           player1Choice[count].style.background = "#5b913b";
         } else if (GB2.getShip(i, j) === undefined) {
           player2[count].textContent = "";

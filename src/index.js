@@ -7,7 +7,7 @@ function main() {
   userInterface.paintBoards();
 
   const player1 = Player("Antonio");
-  const player2 = Player();
+  const player2 = Player("Franco");
 
   const startButton = document.querySelector(".startGame-button");
 
