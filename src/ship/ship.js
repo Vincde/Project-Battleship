@@ -1,5 +1,6 @@
-function Ship(length) {
+function ship(shipLength) {
   let nTimesHit = 0;
+  let length = shipLength;
 
   function hit() {
     nTimesHit += 1;
@@ -15,4 +16,4 @@ function Ship(length) {
   return { hit, isSunk };
 }
 
-export default Ship;
+export default ship;
