@@ -1,6 +1,7 @@
 function ship(shipLength) {
   let nTimesHit = 0;
   let length = shipLength;
+  let sunk = false;
 
   function hit() {
     nTimesHit += 1;
@@ -8,6 +9,7 @@ function ship(shipLength) {
 
   function isSunk() {
     if (nTimesHit >= length) {
+      sunk = true;
       return true;
     }
     return false;
