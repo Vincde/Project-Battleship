@@ -14,11 +14,11 @@ export default function gameBoard() {
     if (verifyDimension(row, column, length, direction)) {
       if (direction === "v") {
         for (let i = 0; i < length; i++) {
-          board[row + i][column] = { ship: newShip, hit: false };
+          board[row + i - 1][column - 1] = { ship: newShip, hit: false };
         }
       } else if (direction === "h") {
         for (let i = 0; i < length; i++) {
-          board[row][column + i] = { ship: newShip, hit: false };
+          board[row - 1][column + i - 1] = { ship: newShip, hit: false };
         }
       }
       return true;
@@ -28,21 +28,23 @@ export default function gameBoard() {
   }
 
   function receiveAttack(row, column) {
-    if (
-      typeof board[row][column] === "object" &&
-      board[row][column].hit === false
-    ) {
-      board[row][column].newShip.hit();
-      board[row][column].hit = true;
-      if (board[row][column].newShip.isSunk()) {
-        return "Ship has been sunk!";
+    if (verifyDimension(row, column)) {
+      if (
+        typeof board[row - 1][column - 1] === "object" &&
+        board[row - 1][column - 1].hit === false
+      ) {
+        board[row - 1][column - 1].ship.hit();
+        board[row - 1][column - 1].hit = true;
+        if (board[row - 1][column - 1].ship.isSunk()) {
+          return "Ship has been sunk!";
+        }
+      } else if (typeof board[row - 1][column - 1] === "undefined") {
+        board[row][column] = "miss";
       }
-    } else if (typeof board[row][column] === "undefined") {
-      board[row][column] = "miss";
     }
   }
 
-  function verifyDimension(row, column, length, direction) {
+  function verifyDimension(row, column, length = 0, direction = 0) {
     if (row > 10 || row <= 0) return false;
 
     if (column > 10 || column <= 0) return false;
