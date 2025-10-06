@@ -17,3 +17,12 @@ test("receiveAttack returns correct values", () => {
   newG.receiveAttack(7, 4);
   expect(newG.receiveAttack(7, 5)).toBe("Ship has been sunk!");
 });
+
+test("getMissedAttacks and setMissedAttacks", () => {
+  const newG = gameBoard();
+  newG.setMissedAttack(2, 4, false);
+  newG.setMissedAttack(7, 3, true);
+  expect(newG.getMissedAttack(2, 4)).toEqual({ hit: false });
+  expect(newG.getMissedAttack(7, 3)).toEqual({ hit: true });
+  expect(newG.getMissedAttack(8, 1)).toBe(undefined);
+});

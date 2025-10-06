@@ -58,5 +58,15 @@ export default function gameBoard() {
     return true;
   }
 
-  return { placeShip, receiveAttack };
+  function setMissedAttack(row, column, status) {
+    if (verifyDimension(row, column)) {
+      missedAttacks[row - 1][column - 1] = { hit: status };
+    }
+  }
+
+  function getMissedAttack(row, column) {
+    return missedAttacks[row - 1][column - 1];
+  }
+
+  return { placeShip, receiveAttack, setMissedAttack, getMissedAttack };
 }
