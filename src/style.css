@@ -19,11 +19,13 @@
 
 main{
     display: flex;
-    justify-content: space-around;
+    justify-content: center;
+    gap: 100px;
 }
 
 .boards{
     display: flex;
+    justify-content: center;
 }
 
 .player-1-board,
@@ -42,6 +44,11 @@ main{
 }
 
 
+
+.score{
+    align-self: center;
+    
+}
 
 
 
