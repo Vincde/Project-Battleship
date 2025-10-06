@@ -2,7 +2,10 @@ import ship from "../ship/ship";
 
 export default function gameBoard() {
   let board = Array.from({ length: 10 }, () =>
-    Array.from({ length: 10 }, () => 0)
+    Array.from({ length: 10 }, () => undefined)
+  );
+  let missedAttacks = Array.from({ length: 10 }, () =>
+    Array.from({ length: 10 }, () => undefined)
   );
 
   function placeShip(row, column, length, direction) {
@@ -26,16 +29,16 @@ export default function gameBoard() {
 
   function receiveAttack(row, column) {
     if (
-      typeof gameBoard[row][column] === "object" &&
-      gameBoard[row][column].hit === false
+      typeof board[row][column] === "object" &&
+      board[row][column].hit === false
     ) {
-      gameBoard[row][column].newShip.hit();
-      gameBoard[row][column].hit = true;
-      if (gameBoard[row][column].newShip.isSunk()) {
+      board[row][column].newShip.hit();
+      board[row][column].hit = true;
+      if (board[row][column].newShip.isSunk()) {
         return "Ship has been sunk!";
       }
-    } else if (typeof gameBoard[row][column] === "undefined") {
-      gameBoard[row][column] = "miss";
+    } else if (typeof board[row][column] === "undefined") {
+      board[row][column] = "miss";
     }
   }
 
