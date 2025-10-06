@@ -24,6 +24,21 @@ export default function gameBoard() {
     }
   }
 
+  function receiveAttack(row, column) {
+    if (
+      typeof gameBoard[row][column] === "object" &&
+      gameBoard[row][column].hit === false
+    ) {
+      gameBoard[row][column].newShip.hit();
+      gameBoard[row][column].hit = true;
+      if (gameBoard[row][column].newShip.isSunk()) {
+        return "Ship has been sunk!";
+      }
+    } else if (typeof gameBoard[row][column] === "undefined") {
+      gameBoard[row][column] = "miss";
+    }
+  }
+
   function verifyDimension(row, column, length, direction) {
     if (row > 10 || row <= 0) return false;
 
@@ -38,5 +53,5 @@ export default function gameBoard() {
     return true;
   }
 
-  return { placeShip };
+  return { placeShip, receiveAttack };
 }
