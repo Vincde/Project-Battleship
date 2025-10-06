@@ -1,7 +1,9 @@
 *{
     border:2px solid red;
     margin:4px;
+    box-sizing: border-box;
 }
+
 
 
 .logo{
@@ -13,6 +15,30 @@
 
 .logo img{
     max-width: 30px;
+}
+
+main{
+    display: flex;
+    justify-content: space-around;
+}
+
+.boards{
+    display: flex;
+}
+
+.player-1-board,
+.player-2-board{
+    width: 280px;
+    aspect-ratio: 1/1;
+}
+
+.player-1-board__ships,
+.player-1-board__shots,
+.player-2-board__ships,
+.player-2-board__shots{
+    aspect-ratio: 1/1;
+    display:grid;
+    grid-template-columns: repeat(10, 1fr);
 }
 
 
