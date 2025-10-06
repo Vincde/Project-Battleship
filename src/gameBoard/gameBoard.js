@@ -68,5 +68,22 @@ export default function gameBoard() {
     return missedAttacks[row - 1][column - 1];
   }
 
-  return { placeShip, receiveAttack, setMissedAttack, getMissedAttack };
+  function verifyEndGame() {
+    for (let i = 0; i < board.length; i++) {
+      for (let j = 0; j < board.length; j++) {
+        if (typeof board[i][j] === "object" && board[i][j].hit === false) {
+          return false;
+        }
+      }
+    }
+    return true;
+  }
+
+  return {
+    placeShip,
+    receiveAttack,
+    setMissedAttack,
+    getMissedAttack,
+    verifyEndGame,
+  };
 }

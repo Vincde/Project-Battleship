@@ -26,3 +26,14 @@ test("getMissedAttacks and setMissedAttacks", () => {
   expect(newG.getMissedAttack(7, 3)).toEqual({ hit: true });
   expect(newG.getMissedAttack(8, 1)).toBe(undefined);
 });
+
+test("verify endGame function returns correct ending", () => {
+  const newG = gameBoard();
+  newG.placeShip(8, 3, 3, "h");
+  newG.receiveAttack(8, 3);
+  expect(newG.verifyEndGame()).toBe(false);
+  newG.receiveAttack(8, 4);
+  expect(newG.verifyEndGame()).toBe(false);
+  newG.receiveAttack(8, 5);
+  expect(newG.verifyEndGame()).toBe(true);
+});
