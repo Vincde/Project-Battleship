@@ -5,5 +5,8 @@ export default function player(name = "computer") {
   let playerName = name;
   const playerGameBoard = gameBoard();
 
+  if (playerName === "computer") {
+  }
+
   return { playerGameBoard, playerName };
 }

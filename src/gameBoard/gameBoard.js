@@ -68,6 +68,10 @@ export default function gameBoard() {
     return missedAttacks[row - 1][column - 1];
   }
 
+  function getBoardElement(row, column) {
+    return board[row][column];
+  }
+
   function verifyEndGame() {
     for (let i = 0; i < board.length; i++) {
       for (let j = 0; j < board.length; j++) {
@@ -84,6 +88,7 @@ export default function gameBoard() {
     receiveAttack,
     setMissedAttack,
     getMissedAttack,
+    getBoardElement,
     verifyEndGame,
   };
 }

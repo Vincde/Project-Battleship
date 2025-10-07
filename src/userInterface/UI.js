@@ -53,5 +53,55 @@ export default function ui() {
     });
   }
 
-  return { createGrids, chooseNumberOfPlayers };
+  function reload(player1, player2) {
+    const player1Ships = document.querySelectorAll(
+      ".player-1-board__ships > div"
+    );
+    const player1Shots = document.querySelectorAll(
+      ".player-1-board__shots > div"
+    );
+    const player2Ships = document.querySelectorAll(
+      ".player-2-board__ships > div"
+    );
+    const player2Shots = document.querySelectorAll(
+      ".player-2-board__shots > div"
+    );
+
+    let counter = 0;
+    for (let i = 0; i < 10; i++) {
+      for (let j = 0; j < 10; j++) {
+        if (
+          typeof player1.playerGameBoard.getBoardElement(i, j) === "object" &&
+          player1.playerGameBoard.getBoardElement(i, j).hit === false
+        ) {
+          player1Ships[counter].style.backgroundColor = "green";
+        } else if (
+          typeof player1.playerGameBoard.getBoardElement(i, j) === "object" &&
+          player1.playerGameBoard.getBoardElement(i, j).hit === true
+        ) {
+          player1Ships[counter].style.backgroundColor = "red";
+        } else if (player1.playerGameBoard.getBoardElement(i, j) === "miss") {
+          player1Ships[counter].style.backgroundColor = "gray";
+        }
+
+        if (
+          typeof player2.playerGameBoard.getBoardElement(i, j) === "object" &&
+          player2.playerGameBoard.getBoardElement(i, j).hit === false
+        ) {
+          player2Ships[counter].style.backgroundColor = "green";
+        } else if (
+          typeof player2.playerGameBoard.getBoardElement(i, j) === "object" &&
+          player2.playerGameBoard.getBoardElement(i, j).hit === true
+        ) {
+          player2Ships[counter].style.backgroundColor = "red";
+        } else if (player2.playerGameBoard.getBoardElement(i, j) === "miss") {
+          player2Ships[counter].style.backgroundColor = "gray";
+        }
+
+        counter++;
+      }
+    }
+  }
+
+  return { createGrids, chooseNumberOfPlayers, reload };
 }
