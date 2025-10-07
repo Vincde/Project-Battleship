@@ -5,4 +5,6 @@ import "./css/gameboard.css";
 import ui from "./userInterface/UI";
 
 const UI = ui();
-UI.createGrids();
+UI.chooseNumberOfPlayers().then((numPlayers) => {
+  UI.createGrids();
+});

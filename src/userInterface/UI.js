@@ -18,5 +18,40 @@ export default function ui() {
     }
   }
 
-  return { createGrids };
+  function chooseNumberOfPlayers() {
+    return new Promise(function (resolve) {
+      const main = document.querySelector("main");
+      main.style.filter = "blur(5px)";
+
+      const title = document.createElement("h1");
+      title.textContent = "Choose the number of human players:";
+      const bttn1 = document.createElement("button");
+      bttn1.textContent = "1 Player (and one computer player)";
+      const bttn2 = document.createElement("button");
+      bttn2.textContent = "2 Players (and zero computer player)";
+
+      const container = document.createElement("div");
+      container.appendChild(title);
+      container.appendChild(bttn1);
+      container.appendChild(bttn2);
+
+      const body = document.querySelector("body");
+      body.appendChild(container);
+      container.style = "position: absolute; top:50%; left:30%;";
+
+      bttn1.addEventListener("click", () => {
+        container.remove();
+        main.style.filter = "blur(0)";
+        resolve(1);
+      });
+
+      bttn2.addEventListener("click", () => {
+        container.remove();
+        main.style.filter = "blur(0)";
+        resolve(2);
+      });
+    });
+  }
+
+  return { createGrids, chooseNumberOfPlayers };
 }
