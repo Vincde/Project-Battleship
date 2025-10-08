@@ -10,9 +10,7 @@ function ship(shipLength) {
   function isSunk() {
     if (nTimesHit >= length) {
       sunk = true;
-      return true;
     }
-    return false;
   }
 
   return { hit, isSunk };
