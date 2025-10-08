@@ -141,9 +141,9 @@ export default function ui() {
     if (
       typeof player1.playerGameBoard.getMissedAttack(i, j) === "object" &&
       player1.playerGameBoard.getMissedAttack(i, j).hit === true &&
-      player1.playerGameBoard.getMissedAttack(i, j).sunk === true
+      player2.playerGameBoard.getBoardElement(i, j).ship.isSunk()
     ) {
-      player1Shots[counter].style.backgroundColor = "#3e0703";
+      player1Shots[counter].style.backgroundColor = "#253900";
     }
 
     if (
@@ -161,9 +161,9 @@ export default function ui() {
     if (
       typeof player2.playerGameBoard.getMissedAttack(i, j) === "object" &&
       player2.playerGameBoard.getMissedAttack(i, j).hit === true &&
-      player2.playerGameBoard.getMissedAttack(i, j).sunk === true
+      player1.playerGameBoard.getBoardElement(i, j).ship.isSunk()
     ) {
-      player2Shots[counter].style.backgroundColor = "#3e0703";
+      player2Shots[counter].style.backgroundColor = "#253900";
     }
   }
 

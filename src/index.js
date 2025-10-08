@@ -21,11 +21,11 @@ UI.chooseNumberOfPlayers().then((numPlayers) => {
   player1.playerGameBoard.placeShip(3, 4, 3, "h");
   player1.playerGameBoard.receiveAttack(3, 4);
   player1.playerGameBoard.receiveAttack(3, 5);
-  player1.playerGameBoard.receiveAttack(8, 2);
+  player1.playerGameBoard.receiveAttack(3, 6);
 
   player2.playerGameBoard.setMissedAttack(3, 4, true);
   player2.playerGameBoard.setMissedAttack(3, 5, true);
-  player2.playerGameBoard.setMissedAttack(8, 2, false);
+  player2.playerGameBoard.setMissedAttack(3, 6, true);
 
   UI.reload(player1, player2);
 });
