@@ -167,5 +167,49 @@ export default function ui() {
     }
   }
 
-  return { createGrids, chooseNumberOfPlayers, reload };
+  function attackShipsEvent(player1, player2) {
+    const player1Shots = document.querySelectorAll(
+      ".player-1-board__shots > div"
+    );
+
+    const player2Shots = document.querySelectorAll(
+      ".player-2-board__shots > div"
+    );
+
+    let count = 0;
+    for (let i = 1; i <= 10; i++) {
+      for (let j = 1; j <= 10; j++) {
+        player1Shots[count].addEventListener(
+          "click",
+          () => {
+            let res = player2.playerGameBoard.receiveAttack(i, j);
+            if (res === true) {
+              player1.playerGameBoard.setMissedAttack(i, j, true);
+            } else if (res === false) {
+              player1.playerGameBoard.setMissedAttack(i, j, false);
+            }
+            reload(player1, player2);
+          },
+          { once: true }
+        );
+
+        player2Shots[count].addEventListener(
+          "click",
+          () => {
+            let res = player1.playerGameBoard.receiveAttack(i, j);
+            if (res === true) {
+              player2.playerGameBoard.setMissedAttack(i, j, true);
+            } else if (res === false) {
+              player2.playerGameBoard.setMissedAttack(i, j, false);
+            }
+            reload(player1, player2);
+          },
+          { once: true }
+        );
+        count++;
+      }
+    }
+  }
+
+  return { createGrids, chooseNumberOfPlayers, reload, attackShipsEvent };
 }

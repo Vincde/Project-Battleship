@@ -38,8 +38,10 @@ export default function gameBoard() {
         if (board[row - 1][column - 1].ship.isSunk()) {
           return "Ship has been sunk!";
         }
+        return true;
       } else if (typeof board[row - 1][column - 1] === "undefined") {
-        board[row][column] = "miss";
+        board[row - 1][column - 1] = "miss";
+        return false;
       }
     }
   }
@@ -60,7 +62,7 @@ export default function gameBoard() {
 
   function setMissedAttack(row, column, status) {
     if (verifyDimension(row, column)) {
-      missedAttacks[row - 1][column - 1] = { hit: status, sunk: false };
+      missedAttacks[row - 1][column - 1] = { hit: status };
     }
   }
 

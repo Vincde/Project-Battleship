@@ -28,4 +28,5 @@ UI.chooseNumberOfPlayers().then((numPlayers) => {
   player2.playerGameBoard.setMissedAttack(3, 6, true);
 
   UI.reload(player1, player2);
+  UI.attackShipsEvent(player1, player2);
 });
