@@ -60,12 +60,12 @@ export default function gameBoard() {
 
   function setMissedAttack(row, column, status) {
     if (verifyDimension(row, column)) {
-      missedAttacks[row - 1][column - 1] = { hit: status };
+      missedAttacks[row][column] = { hit: status, sunk: false };
     }
   }
 
   function getMissedAttack(row, column) {
-    return missedAttacks[row - 1][column - 1];
+    return missedAttacks[row][column];
   }
 
   function getBoardElement(row, column) {
