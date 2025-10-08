@@ -135,7 +135,7 @@ export default function ui() {
       typeof player1.playerGameBoard.getMissedAttack(i, j) === "object" &&
       player1.playerGameBoard.getMissedAttack(i, j).hit === false
     ) {
-      player1Shots[counter].style.backgroundColor = "red";
+      player1Shots[counter].style.backgroundColor = "gray";
     }
 
     if (
@@ -155,7 +155,7 @@ export default function ui() {
       typeof player2.playerGameBoard.getMissedAttack(i, j) === "object" &&
       player2.playerGameBoard.getMissedAttack(i, j).hit === false
     ) {
-      player2Shots[counter].style.backgroundColor = "red";
+      player2Shots[counter].style.backgroundColor = "gray";
     }
 
     if (
