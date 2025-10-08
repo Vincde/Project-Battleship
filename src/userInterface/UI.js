@@ -189,6 +189,9 @@ export default function ui() {
               player1.playerGameBoard.setMissedAttack(i, j, false);
             }
             reload(player1, player2);
+            if (player2.playerGameBoard.verifyEndGame()) {
+              renderEndGame(1);
+            }
           },
           { once: true }
         );
@@ -203,12 +206,24 @@ export default function ui() {
               player2.playerGameBoard.setMissedAttack(i, j, false);
             }
             reload(player1, player2);
+            if (player1.playerGameBoard.verifyEndGame()) {
+              renderEndGame(2);
+            }
           },
           { once: true }
         );
         count++;
       }
     }
+  }
+
+  function renderEndGame(winnerPlayer) {
+    const boards = document.querySelector(".boards");
+    boards.remove();
+    const winner = document.createElement("h1");
+    winner.textContent = `Player ${winnerPlayer} won!`;
+    const body = document.querySelector(".score");
+    body.appendChild(winner);
   }
 
   return { createGrids, chooseNumberOfPlayers, reload, attackShipsEvent };

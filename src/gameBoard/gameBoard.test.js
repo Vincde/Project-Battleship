@@ -3,7 +3,7 @@ import gameBoard from "./gameBoard";
 test("placeShip function of gameBoard", () => {
   const newG = gameBoard();
   expect(newG.placeShip(7, 3, 3, "h")).toEqual(true);
-  expect(newG.placeShip(7, 3, 3, "v")).toEqual(true);
+  expect(newG.placeShip(7, 3, 3, "v")).toEqual(false);
   expect(newG.placeShip(8, 3, 3, "v")).toEqual(false);
   expect(newG.placeShip(3, 8, 3, "h")).toEqual(false);
 });
@@ -15,7 +15,7 @@ test("receiveAttack returns correct values", () => {
   expect(newG.receiveAttack(7, 3)).toBe(true);
   expect(newG.receiveAttack(2, 3)).toBe(false);
   newG.receiveAttack(7, 4);
-  expect(newG.receiveAttack(7, 5)).toBe("Ship has been sunk!");
+  expect(newG.receiveAttack(7, 5)).toBe(true);
 });
 
 test("getMissedAttacks and setMissedAttacks", () => {
