@@ -14,9 +14,15 @@ export default function gameBoard() {
     if (verifyDimension(row, column, length, direction)) {
       if (direction === "v") {
         for (let i = 0; i < length; i++) {
+          if (typeof board[row + i - 1][column - 1] === "object") return false;
+        }
+        for (let i = 0; i < length; i++) {
           board[row + i - 1][column - 1] = { ship: newShip, hit: false };
         }
       } else if (direction === "h") {
+        for (let i = 0; i < length; i++) {
+          if (typeof board[row - 1][column + i - 1] === "object") return false;
+        }
         for (let i = 0; i < length; i++) {
           board[row - 1][column + i - 1] = { ship: newShip, hit: false };
         }
@@ -35,9 +41,6 @@ export default function gameBoard() {
       ) {
         board[row - 1][column - 1].ship.hit();
         board[row - 1][column - 1].hit = true;
-        if (board[row - 1][column - 1].ship.isSunk()) {
-          return "Ship has been sunk!";
-        }
         return true;
       } else if (typeof board[row - 1][column - 1] === "undefined") {
         board[row - 1][column - 1] = "miss";
