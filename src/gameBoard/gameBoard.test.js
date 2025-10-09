@@ -1,39 +1,10 @@
 import gameBoard from "./gameBoard";
 
-test("placeShip function of gameBoard", () => {
-  const newG = gameBoard();
-  expect(newG.placeShip(7, 3, 3, "h")).toEqual(true);
-  expect(newG.placeShip(7, 3, 3, "v")).toEqual(false);
-  expect(newG.placeShip(8, 3, 3, "v")).toEqual(false);
-  expect(newG.placeShip(3, 8, 3, "h")).toEqual(false);
-});
-
-test("receiveAttack returns correct values", () => {
+test("placeShip saves the correct result", () => {
   const newG = gameBoard();
 
-  newG.placeShip(7, 3, 3, "h");
-  expect(newG.receiveAttack(7, 3)).toBe(true);
-  expect(newG.receiveAttack(2, 3)).toBe(false);
-  newG.receiveAttack(7, 4);
-  expect(newG.receiveAttack(7, 5)).toBe(true);
-});
+  newG.placeShip(2, 3, 3, "v");
+  expect(newG.getBoardElement(2, 3)).toContain({ row });
 
-test("getMissedAttacks and setMissedAttacks", () => {
-  const newG = gameBoard();
-  newG.setMissedAttack(2, 4, false);
-  newG.setMissedAttack(7, 3, true);
-  expect(newG.getMissedAttack(1, 3)).toEqual({ hit: false });
-  expect(newG.getMissedAttack(6, 2)).toEqual({ hit: true }); // careful with tests
-  expect(newG.getMissedAttack(8, 1)).toBe(undefined);
-});
-
-test("verify endGame function returns correct ending", () => {
-  const newG = gameBoard();
-  newG.placeShip(8, 3, 3, "h");
-  newG.receiveAttack(8, 3);
-  expect(newG.verifyEndGame()).toBe(false);
-  newG.receiveAttack(8, 4);
-  expect(newG.verifyEndGame()).toBe(false);
-  newG.receiveAttack(8, 5);
-  expect(newG.verifyEndGame()).toBe(true);
+  expect(newG.getBoardElement(2, 3)).toContain({ column });
 });

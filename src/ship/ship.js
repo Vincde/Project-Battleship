@@ -1,19 +1,23 @@
 function ship(shipLength) {
   let nTimesHit = 0;
   let length = shipLength;
-  let sunk = false;
 
   function hit() {
     nTimesHit += 1;
   }
 
-  function isSunk() {
+  function getSunk() {
     if (nTimesHit >= length) {
-      sunk = true;
+      return true;
     }
+    return false;
   }
 
-  return { hit, isSunk };
+  function getLength() {
+    return length;
+  }
+
+  return { hit, getSunk, getLength };
 }
 
 export default ship;
