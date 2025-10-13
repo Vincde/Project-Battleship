@@ -21,6 +21,13 @@ export default function gameBoard() {
     return board.find((el) => el.row === row && el.column === column);
   }
 
+  function receiveAttack(row, column) {
+    let element = board.find((el) => el.row === row && el.column === column);
+    if (element !== undefined) {
+      element.ship.hit();
+    }
+  }
+
   return {
     placeShip,
     getBoardElement,
