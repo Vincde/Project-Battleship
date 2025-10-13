@@ -22,10 +22,11 @@ export default function gameBoard() {
   }
 
   function receiveAttack(row, column) {
-    // tests needed!
-    let element = board.find((el) => el.row === row && el.column === column);
-    if (element !== undefined) {
-      element.ship.hit();
+    let element = board.indexOf(
+      board.find((el) => el.row === row && el.column === column)
+    );
+    if (element !== -1) {
+      board[element].ship.hit();
     }
   }
 
