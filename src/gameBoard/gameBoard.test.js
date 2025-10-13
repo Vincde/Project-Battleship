@@ -11,7 +11,6 @@ test("placeShip saves the correct result", () => {
 
   newG.placeShip(2, 3, 3, "v");
 
-  expect(typeof newG.getBoardElement(2, 3)).toBe("object");
   expect(ship).toHaveBeenCalledWith(3);
 
   expect(newG.getBoardElement(2, 3)).toEqual({

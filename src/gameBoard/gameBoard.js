@@ -2,9 +2,7 @@ import ship from "../ship/ship";
 
 export default function gameBoard() {
   let board = [];
-  let missedAttacks = Array.from({ length: 10 }, () =>
-    Array.from({ length: 10 }, () => undefined)
-  );
+  let missedAttacks = [];
 
   function placeShip(row, column, length, direction) {
     const newShip = ship(length);
@@ -21,12 +19,18 @@ export default function gameBoard() {
     return board.find((el) => el.row === row && el.column === column);
   }
 
+  function getMissedElement(row, column) {
+    return missedAttacks.find((el) => el.row === row && el.column === column);
+  }
+
   function receiveAttack(row, column) {
     let element = board.indexOf(
       board.find((el) => el.row === row && el.column === column)
     );
     if (element !== -1) {
       board[element].ship.hit();
+    } else {
+      missedAttacks.push({ row: row, column: column });
     }
   }
 
@@ -34,5 +38,6 @@ export default function gameBoard() {
     placeShip,
     getBoardElement,
     receiveAttack,
+    getMissedElement,
   };
 }
