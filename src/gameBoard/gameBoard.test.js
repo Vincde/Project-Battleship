@@ -30,8 +30,10 @@ test("receiveAttack correctly sends the attack on the ship", () => {
   newG.placeShip(2, 3, 3, "v");
 
   newG.receiveAttack(2, 3);
-  expect(ship.hit).toHaveBeenCalled;
+  expect(mockShip.hit).toHaveBeenCalled(); // tecnically this is maybe useless
+  // the way it works is that everything gets taken from board array
+  // but board array is not seen from here, even if it calls an 'external' object
 
   newG.receiveAttack(7, 7);
-  expect(ship.hit).not.toHaveBeenCalled;
+  expect(mockShip.hit).toHaveBeenCalledTimes(1);
 });
