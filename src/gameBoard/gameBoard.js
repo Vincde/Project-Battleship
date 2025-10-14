@@ -34,6 +34,16 @@ export default function gameBoard() {
     }
   }
 
+  function isGameFinished() {
+    for (const el of board) {
+      if (!el.ship.getSunk()) {
+        return false;
+      }
+    }
+
+    return true;
+  }
+
   return {
     placeShip,
     getBoardElement,
