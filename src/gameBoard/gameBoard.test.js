@@ -42,11 +42,7 @@ test("isGameFinished returns false or true correctly", () => {
   const newG = gameBoard();
   const mockShip = {
     hit: jest.fn(),
-    getSunk: jest
-      .fn()
-      .mockReturnValueOnce(undefined)
-      .mockReturnValueOnce(false)
-      .mockReturnValue(true),
+    getSunk: jest.fn().mockReturnValueOnce(false).mockReturnValue(true),
     getLenght: jest.fn(),
   };
 
