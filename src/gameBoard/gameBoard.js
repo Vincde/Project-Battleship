@@ -35,13 +35,14 @@ export default function gameBoard() {
   }
 
   function isGameFinished() {
-    for (const el of board) {
-      if (!el.ship.getSunk()) {
-        return false;
+    if (board.length > 0) {
+      for (const el of board) {
+        if (!el.ship.getSunk()) {
+          return false;
+        }
       }
+      return true;
     }
-
-    return true;
   }
 
   return {
@@ -49,5 +50,6 @@ export default function gameBoard() {
     getBoardElement,
     receiveAttack,
     getMissedElement,
+    isGameFinished,
   };
 }
