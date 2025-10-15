@@ -4,6 +4,7 @@ import "./css/logo.css";
 import "./css/gameboard.css";
 import player from "./player/player";
 import ui from "./userInterface/UI";
+import computer from "./player/computer";
 
 const UI = ui();
 UI.chooseNumberOfPlayers().then((numPlayers) => {
@@ -12,7 +13,7 @@ UI.chooseNumberOfPlayers().then((numPlayers) => {
   let player2;
   if (numPlayers === 1) {
     player1 = player("User");
-    player2 = player("computer");
+    player2 = computer();
   } else {
     player1 = player("User");
     player2 = player("User2");
@@ -28,6 +29,5 @@ UI.chooseNumberOfPlayers().then((numPlayers) => {
   player2.playerGameBoard.placeShip(1, 5, 2, "h");
   player2.playerGameBoard.placeShip(7, 5, 4, "h");
 
-  UI.reload(player1, player2);
-  UI.attackShipsEvent(player1, player2);
+  UI.reload(player1.playerGameBoard, player2.playerGameBoard);
 });
