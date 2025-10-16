@@ -164,10 +164,13 @@ export default function ui() {
 
   function searchForSunkElement(playerGameBoard, element, player) {
     let playerShips;
+    let playerShots;
     if (player === 1) {
       playerShips = document.querySelectorAll(".player-2-board__ships > div");
+      playerShots = document.querySelectorAll(".player-1-board__shots > div");
     } else {
       playerShips = document.querySelectorAll(".player-1-board__ships > div");
+      playerShots = document.querySelectorAll(".player-2-board__shots > div");
     }
 
     let count = 0;
@@ -179,6 +182,7 @@ export default function ui() {
           playerGameBoard.getBoardElement(i, j).ship === element.ship
         ) {
           playerShips[count].style.backgroundColor = "#3e0703";
+          playerShots[count].style.backgroundColor = "#3e0703";
         }
 
         count += 1;
