@@ -19,6 +19,13 @@ test("placeShip saves the correct result", () => {
     ship: mockShip,
     direction: "v",
   });
+
+  expect(newG.getBoardElement(3, 3)).toEqual({
+    row: 3,
+    column: 3,
+    ship: mockShip,
+    direction: "v",
+  });
 });
 
 test("receiveAttack correctly sends the attack on the ship", () => {

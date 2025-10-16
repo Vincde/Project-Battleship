@@ -7,12 +7,23 @@ export default function gameBoard() {
   function placeShip(row, column, length, direction) {
     const newShip = ship(length);
 
-    board.push({
-      row: row,
-      column: column,
-      ship: newShip,
-      direction: direction,
-    });
+    for (let i = 0; i < length; i++) {
+      if (direction === "v") {
+        board.push({
+          row: row + i,
+          column: column,
+          ship: newShip,
+          direction: direction,
+        });
+      } else {
+        board.push({
+          row: row,
+          column: column + i,
+          ship: newShip,
+          direction: direction,
+        });
+      }
+    }
   }
 
   function getBoardElement(row, column) {

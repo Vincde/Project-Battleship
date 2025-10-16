@@ -5,3 +5,5 @@ function computer() {
 
   return { computerGameBoard };
 }
+
+export default computer;
