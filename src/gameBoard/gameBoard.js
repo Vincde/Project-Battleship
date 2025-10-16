@@ -40,8 +40,10 @@ export default function gameBoard() {
     );
     if (element !== -1) {
       board[element].ship.hit();
+      return true;
     } else {
       missedAttacks.push({ row: row, column: column });
+      return false;
     }
   }
 

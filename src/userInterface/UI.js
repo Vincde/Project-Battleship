@@ -11,6 +11,11 @@ export default function ui() {
       const div3 = document.createElement("div");
       const div4 = document.createElement("div");
 
+      div1.style.backgroundColor = "white";
+      div2.style.backgroundColor = "white";
+      div3.style.backgroundColor = "white";
+      div4.style.backgroundColor = "white";
+
       player1Ships.appendChild(div1);
       player1Shots.appendChild(div2);
       player2Ships.appendChild(div3);
@@ -80,5 +85,106 @@ export default function ui() {
     }
   }
 
-  return { createGrids, chooseNumberOfPlayers, showShips };
+  function attackEvent(player1Board, player2Board) {
+    const player1Shots = document.querySelectorAll(
+      ".player-1-board__shots > div"
+    );
+    const player2Shots = document.querySelectorAll(
+      ".player-2-board__shots > div"
+    );
+    const player1Ships = document.querySelectorAll(
+      ".player-1-board__ships > div"
+    );
+    const player2Ships = document.querySelectorAll(
+      ".player-2-board__ships > div"
+    );
+
+    let count = 0;
+
+    for (let i = 0; i < 10; i++) {
+      for (let j = 0; j < 10; j++) {
+        let index = count;
+        let row = i;
+        let column = j;
+
+        player1Shots[index].addEventListener("click", (e) => {
+          if (e.currentTarget.style.backgroundColor !== "white") {
+            return;
+          } else {
+            const res = player2Board.receiveAttack(row, column);
+            if (res === true) {
+              e.currentTarget.style.backgroundColor = "red";
+              player2Ships[index].style.backgroundColor = "red";
+              if (player2Board.getBoardElement(row, column).ship.getSunk()) {
+                searchForSunkElement(
+                  player2Board,
+                  player2Board.getBoardElement(row, column),
+                  1
+                );
+              }
+              if (player2Board.isGameFinished()) {
+                document.querySelector("body").remove(); // change this to make a better final screen
+              }
+            } else if (res === false) {
+              e.currentTarget.style.backgroundColor = "gray";
+              player2Ships[index].style.backgroundColor = "gray";
+            }
+          }
+        });
+
+        player2Shots[index].addEventListener("click", (e) => {
+          if (e.currentTarget.style.backgroundColor !== "white") {
+            return;
+          } else {
+            const res = player1Board.receiveAttack(row, column);
+            if (res === true) {
+              e.currentTarget.style.backgroundColor = "red";
+              player1Ships[index].style.backgroundColor = "red";
+              if (player1Board.getBoardElement(row, column).ship.getSunk()) {
+                searchForSunkElement(
+                  player1Board,
+                  player1Board.getBoardElement(row, column),
+                  2
+                );
+              }
+              if (player1Board.isGameFinished()) {
+                document.querySelector("body").remove(); // change this to make a better final screen
+              }
+            } else if (res === false) {
+              e.currentTarget.style.backgroundColor = "gray";
+              player1Ships[index].style.backgroundColor = "gray";
+            }
+          }
+        });
+
+        count += 1;
+      }
+    }
+  }
+
+  function searchForSunkElement(playerGameBoard, element, player) {
+    let playerShips;
+    if (player === 1) {
+      playerShips = document.querySelectorAll(".player-2-board__ships > div");
+    } else {
+      playerShips = document.querySelectorAll(".player-1-board__ships > div");
+    }
+
+    let count = 0;
+
+    for (let i = 0; i < 10; i++) {
+      for (let j = 0; j < 10; j++) {
+        if (
+          playerGameBoard.getBoardElement(i, j) !== undefined &&
+          playerGameBoard.getBoardElement(i, j).ship === element.ship
+        ) {
+          playerShips[count].style.backgroundColor = "#3e0703";
+        }
+
+        count += 1;
+      }
+    }
+  }
+
+  return { createGrids, chooseNumberOfPlayers, showShips, attackEvent };
 }

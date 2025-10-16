@@ -30,4 +30,5 @@ UI.chooseNumberOfPlayers().then((numPlayers) => {
   player2.playerGameBoard.placeShip(7, 5, 4, "h");
 
   UI.showShips(player1.playerGameBoard, player2.playerGameBoard);
+  UI.attackEvent(player1.playerGameBoard, player2.playerGameBoard);
 });
