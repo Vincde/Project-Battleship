@@ -53,7 +53,32 @@ export default function ui() {
     });
   }
 
-  function reload(player1gameBoard, player2gameBoard) {}
+  function showShips(player1Board, player2Board) {
+    const player1Ships = document.querySelectorAll(
+      ".player-1-board__ships > div"
+    );
+    const player2Ships = document.querySelectorAll(
+      ".player-2-board__ships > div"
+    );
 
-  return { createGrids, chooseNumberOfPlayers, reload };
+    let count = 0;
+
+    for (let i = 0; i < 10; i++) {
+      for (let j = 0; j < 10; j++) {
+        const res = player1Board.getBoardElement(i, j);
+        if (res !== undefined) {
+          player1Ships[count].style.backgroundColor = "green";
+        }
+
+        const res2 = player2Board.getBoardElement(i, j);
+        if (res2 !== undefined) {
+          player2Ships[count].style.backgroundColor = "green";
+        }
+
+        count += 1;
+      }
+    }
+  }
+
+  return { createGrids, chooseNumberOfPlayers, showShips };
 }

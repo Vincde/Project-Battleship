@@ -1,9 +1,9 @@
 import gameBoard from "../gameBoard/gameBoard";
 
 function computer() {
-  const computerGameBoard = gameBoard();
+  const playerGameBoard = gameBoard();
 
-  return { computerGameBoard };
+  return { playerGameBoard };
 }
 
 export default computer;
