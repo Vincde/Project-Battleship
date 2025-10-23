@@ -1,26 +1,26 @@
 import ship from "../ship/ship";
 
 export default function gameBoard() {
-  let board = [];
-  let missedAttacks = [];
+  const board = [];
+  const missedAttacks = [];
 
   function placeShip(row, column, length, direction) {
     const newShip = ship(length);
 
-    for (let i = 0; i < length; i++) {
+    for (let i = 0; i < length; i += 1) {
       if (direction === "v") {
         board.push({
           row: row + i,
-          column: column,
+          column,
           ship: newShip,
-          direction: direction,
+          direction,
         });
       } else {
         board.push({
-          row: row,
+          row,
           column: column + i,
           ship: newShip,
-          direction: direction,
+          direction,
         });
       }
     }
@@ -35,27 +35,27 @@ export default function gameBoard() {
   }
 
   function receiveAttack(row, column) {
-    let element = board.indexOf(
+    const element = board.indexOf(
       board.find((el) => el.row === row && el.column === column)
     );
     if (element !== -1) {
       board[element].ship.hit();
       return true;
-    } else {
-      missedAttacks.push({ row: row, column: column });
-      return false;
     }
+    missedAttacks.push({ row, column });
+    return false;
   }
 
   function isGameFinished() {
     if (board.length > 0) {
-      for (const el of board) {
-        if (!el.ship.getSunk()) {
+      for (let i = 0; i < board.length; i += 1) {
+        if (board[i].ship.getSunk()) {
           return false;
         }
       }
       return true;
     }
+    return false;
   }
 
   return {

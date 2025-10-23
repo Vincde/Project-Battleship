@@ -6,8 +6,7 @@ import { FlatCompat } from "@eslint/eslintrc";
 import pluginJs from "@eslint/js";
 import eslintConfigPrettier from "eslint-config-prettier";
 
-import { defineConfig } from "eslint/config";
-import globals from "globals";
+// import { defineConfig } from "eslint/config";
 
 // mimic CommonJS variables -- not needed if using CommonJS
 const __filename = fileURLToPath(import.meta.url);
@@ -24,18 +23,16 @@ export default [
   {
     ignores: ["src/index.test.js"],
   },
-  defineConfig([
-    {
-      files: ["**/*.js"],
-      languageOptions: {
-        globals: {
-          ...globals.jest,
-        },
-      },
-      rules: {
-        "no-unused-vars": "warn",
-        "no-undef": "warn",
+  {
+    files: ["**/*.js"],
+    languageOptions: {
+      globals: {
+        ...globals.jest,
       },
     },
-  ]),
+    rules: {
+      "no-unused-vars": "warn",
+      "no-undef": "warn",
+    },
+  },
 ];
