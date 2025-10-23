@@ -49,7 +49,7 @@ export default function gameBoard() {
   function isGameFinished() {
     if (board.length > 0) {
       for (let i = 0; i < board.length; i += 1) {
-        if (board[i].ship.getSunk()) {
+        if (!board[i].ship.getSunk()) {
           return false;
         }
       }
