@@ -4,11 +4,6 @@ export default function ui() {
     const player1Shots = document.querySelector(".player-1-board__shots");
     const player2Ships = document.querySelector(".player-2-board__ships");
     const player2Shots = document.querySelector(".player-2-board__shots");
-    player1Ships.style.visibility = "hidden";
-    player2Ships.style.visibility = "hidden";
-
-    const bttnPlayer1 = document.querySelector(".player-1-board__bttn");
-    const bttnPlayer2 = document.querySelector(".player-2-board__bttn");
 
     for (let i = 0; i < 100; i += 1) {
       const div1 = document.createElement("div");
@@ -26,6 +21,17 @@ export default function ui() {
       player2Ships.appendChild(div3);
       player2Shots.appendChild(div4);
     }
+  }
+
+  function showBoardEvent() {
+    const player1Ships = document.querySelector(".player-1-board__ships");
+    const player2Ships = document.querySelector(".player-2-board__ships");
+
+    player1Ships.style.visibility = "hidden";
+    player2Ships.style.visibility = "hidden";
+
+    const bttnPlayer1 = document.querySelector(".player-1-board__bttn");
+    const bttnPlayer2 = document.querySelector(".player-2-board__bttn");
 
     bttnPlayer1.addEventListener("click", () => {
       if (player1Ships.style.visibility === "hidden") {
@@ -220,5 +226,11 @@ export default function ui() {
     }
   }
 
-  return { createGrids, chooseNumberOfPlayers, showShips, attackEvent };
+  return {
+    createGrids,
+    chooseNumberOfPlayers,
+    showShips,
+    attackEvent,
+    showBoardEvent,
+  };
 }

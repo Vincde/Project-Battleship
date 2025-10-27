@@ -9,6 +9,7 @@ import computer from "./player/computer";
 const UI = ui();
 UI.chooseNumberOfPlayers().then((numPlayers) => {
   UI.createGrids();
+  UI.showBoardEvent();
   let player1;
   let player2;
   if (numPlayers === 1) {
