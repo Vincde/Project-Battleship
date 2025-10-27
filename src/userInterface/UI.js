@@ -4,6 +4,11 @@ export default function ui() {
     const player1Shots = document.querySelector(".player-1-board__shots");
     const player2Ships = document.querySelector(".player-2-board__ships");
     const player2Shots = document.querySelector(".player-2-board__shots");
+    player1Ships.style.visibility = "hidden";
+    player2Ships.style.visibility = "hidden";
+
+    const bttnPlayer1 = document.querySelector(".player-1-board__bttn");
+    const bttnPlayer2 = document.querySelector(".player-2-board__bttn");
 
     for (let i = 0; i < 100; i += 1) {
       const div1 = document.createElement("div");
@@ -21,6 +26,22 @@ export default function ui() {
       player2Ships.appendChild(div3);
       player2Shots.appendChild(div4);
     }
+
+    bttnPlayer1.addEventListener("click", () => {
+      if (player1Ships.style.visibility === "hidden") {
+        player1Ships.style.visibility = "visible";
+      } else {
+        player1Ships.style.visibility = "hidden";
+      }
+    });
+
+    bttnPlayer2.addEventListener("click", () => {
+      if (player2Ships.style.visibility === "hidden") {
+        player2Ships.style.visibility = "visible";
+      } else {
+        player2Ships.style.visibility = "hidden";
+      }
+    });
   }
 
   function chooseNumberOfPlayers() {
@@ -114,6 +135,9 @@ export default function ui() {
   }
 
   function attackEvent(player1Board, player2Board) {
+    const disablePlayer1 = document.querySelector(".player-1-board__shots");
+    const disablePlayer2 = document.querySelector(".player-2-board__shots");
+
     const player1Shots = document.querySelectorAll(
       ".player-1-board__shots > div"
     );
@@ -157,6 +181,9 @@ export default function ui() {
             e.currentTarget.style.backgroundColor = "gray";
             player2Ships[index].style.backgroundColor = "gray";
           }
+
+          disablePlayer1.inert = true;
+          disablePlayer2.inert = false;
           return null;
         });
 
@@ -183,6 +210,8 @@ export default function ui() {
             player1Ships[index].style.backgroundColor = "gray";
           }
 
+          disablePlayer2.inert = true;
+          disablePlayer1.inert = false;
           return null;
         });
 
