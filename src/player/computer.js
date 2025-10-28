@@ -4,8 +4,20 @@ import player from "./player";
 function computer() {
   const playerGameBoard = gameBoard();
   const playerName = null;
+  const attacks = [];
 
-  return { playerGameBoard, playerName };
+  function randomizeAttack() {
+    let random;
+
+    do {
+      random = Math.floor(Math.random() * 100);
+    } while (attacks.includes(random));
+
+    attacks.push(random);
+    return random;
+  }
+
+  return { playerGameBoard, playerName, randomizeAttack };
 }
 
 export default computer;

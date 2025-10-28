@@ -140,7 +140,7 @@ export default function ui() {
     }
   }
 
-  function attackEvent(player1Board, player2Board) {
+  function attackEvent(player1, player2) {
     const disablePlayer1 = document.querySelector(".player-1-board__shots");
     const disablePlayer2 = document.querySelector(".player-2-board__shots");
 
@@ -169,18 +169,22 @@ export default function ui() {
           if (e.currentTarget.style.backgroundColor !== "white") {
             return null;
           }
-          const res = player2Board.receiveAttack(row, column);
+          const res = player2.playerGameBoard.receiveAttack(row, column);
           if (res === true) {
             e.currentTarget.style.backgroundColor = "red";
             player2Ships[index].style.backgroundColor = "red";
-            if (player2Board.getBoardElement(row, column).ship.getSunk()) {
+            if (
+              player2.playerGameBoard
+                .getBoardElement(row, column)
+                .ship.getSunk()
+            ) {
               searchForSunkElement(
-                player2Board,
-                player2Board.getBoardElement(row, column),
+                player2.playerGameBoard,
+                player2.playerGameBoard.getBoardElement(row, column),
                 1
               );
             }
-            if (player2Board.isGameFinished()) {
+            if (player2.playerGameBoard.isGameFinished()) {
               document.querySelector("body").remove(); // change this to make a better final screen
             }
           } else if (res === false) {
@@ -190,6 +194,12 @@ export default function ui() {
 
           disablePlayer1.inert = true;
           disablePlayer2.inert = false;
+
+          if (player2.playerName === null) {
+            const random = player2.randomizeAttack();
+            player2Shots[random].click();
+          }
+
           return null;
         });
 
@@ -197,18 +207,22 @@ export default function ui() {
           if (e.currentTarget.style.backgroundColor !== "white") {
             return null;
           }
-          const res = player1Board.receiveAttack(row, column);
+          const res = player1.playerGameBoard.receiveAttack(row, column);
           if (res === true) {
             e.currentTarget.style.backgroundColor = "red";
             player1Ships[index].style.backgroundColor = "red";
-            if (player1Board.getBoardElement(row, column).ship.getSunk()) {
+            if (
+              player1.playerGameBoard
+                .getBoardElement(row, column)
+                .ship.getSunk()
+            ) {
               searchForSunkElement(
-                player1Board,
-                player1Board.getBoardElement(row, column),
+                player1.playerGameBoard,
+                player1.playerGameBoard.getBoardElement(row, column),
                 2
               );
             }
-            if (player1Board.isGameFinished()) {
+            if (player1.playerGameBoard.isGameFinished()) {
               document.querySelector("body").remove(); // change this to make a better final screen
             }
           } else if (res === false) {
