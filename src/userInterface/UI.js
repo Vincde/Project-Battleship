@@ -185,7 +185,11 @@ export default function ui() {
               );
             }
             if (player2.playerGameBoard.isGameFinished()) {
-              document.querySelector("body").remove(); // change this to make a better final screen
+              document.querySelector("body").remove();
+              const finalTitle = document.createElement("h1");
+              finalTitle.textContent = `Game Finished! ${player1.playerName} won!`;
+              document.querySelector("html").appendChild(finalTitle);
+              // change this to make a better final screen
             }
           } else if (res === false) {
             e.currentTarget.style.backgroundColor = "gray";
@@ -223,7 +227,11 @@ export default function ui() {
               );
             }
             if (player1.playerGameBoard.isGameFinished()) {
-              document.querySelector("body").remove(); // change this to make a better final screen
+              document.querySelector("body").remove();
+              const finalTitle = document.createElement("h1");
+              finalTitle.textContent = `Game Finished! ${player1.playerName} won!`;
+              document.querySelector("html").appendChild(finalTitle);
+              // change this to make a better final screen
             }
           } else if (res === false) {
             e.currentTarget.style.backgroundColor = "gray";
