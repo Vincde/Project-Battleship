@@ -140,6 +140,65 @@ export default function ui() {
     }
   }
 
+  function handleAttackShip(
+    e,
+    row,
+    column,
+    index,
+    player,
+    playerOpponent,
+    opponentShips,
+    opponentShots,
+    tempDisablePlayer,
+    tempDisableOpponent,
+    name
+  ) {
+    const playerShips = opponentShips;
+    const playerShots = opponentShots;
+    const disablePlayer = tempDisablePlayer;
+    const disableOpponent = tempDisableOpponent;
+
+    if (e.currentTarget.style.backgroundColor !== "white") {
+      return null;
+    }
+    const res = playerOpponent.playerGameBoard.receiveAttack(row, column);
+    if (res === true) {
+      e.currentTarget.style.backgroundColor = "red";
+      playerShips[index].style.backgroundColor = "red";
+      if (
+        playerOpponent.playerGameBoard
+          .getBoardElement(row, column)
+          .ship.getSunk()
+      ) {
+        searchForSunkElement(
+          playerOpponent.playerGameBoard,
+          playerOpponent.playerGameBoard.getBoardElement(row, column),
+          name === 1 ? 1 : 2
+        );
+      }
+      if (playerOpponent.playerGameBoard.isGameFinished()) {
+        document.querySelector("body").remove();
+        const finalTitle = document.createElement("h1");
+        finalTitle.textContent = `Game Finished! ${player.playerName} won!`;
+        document.querySelector("html").appendChild(finalTitle);
+        // change this to make a better final screen
+      }
+    } else if (res === false) {
+      e.currentTarget.style.backgroundColor = "gray";
+      playerShips[index].style.backgroundColor = "gray";
+    }
+
+    disablePlayer.inert = true;
+    disableOpponent.inert = false;
+
+    if (playerOpponent.playerName === null) {
+      const random = playerOpponent.randomizeAttack();
+      playerShots[random].click();
+    }
+
+    return null;
+  }
+
   function attackEvent(player1, player2) {
     const disablePlayer1 = document.querySelector(".player-1-board__shots");
     const disablePlayer2 = document.querySelector(".player-2-board__shots");
@@ -166,7 +225,7 @@ export default function ui() {
         const column = j;
 
         player1Shots[index].addEventListener("click", (e) => {
-          if (e.currentTarget.style.backgroundColor !== "white") {
+          /* if (e.currentTarget.style.backgroundColor !== "white") {
             return null;
           }
           const res = player2.playerGameBoard.receiveAttack(row, column);
@@ -204,11 +263,24 @@ export default function ui() {
             player2Shots[random].click();
           }
 
-          return null;
+          return null; */
+          handleAttackShip(
+            e,
+            row,
+            column,
+            index,
+            player1,
+            player2,
+            player2Ships,
+            player2Shots,
+            disablePlayer1,
+            disablePlayer2,
+            1
+          );
         });
 
         player2Shots[index].addEventListener("click", (e) => {
-          if (e.currentTarget.style.backgroundColor !== "white") {
+          /* if (e.currentTarget.style.backgroundColor !== "white") {
             return null;
           }
           const res = player1.playerGameBoard.receiveAttack(row, column);
@@ -240,7 +312,20 @@ export default function ui() {
 
           disablePlayer2.inert = true;
           disablePlayer1.inert = false;
-          return null;
+          return null; */
+          handleAttackShip(
+            e,
+            row,
+            column,
+            index,
+            player2,
+            player1,
+            player1Ships,
+            player1Shots,
+            disablePlayer2,
+            disablePlayer1,
+            2
+          );
         });
 
         count += 1;
