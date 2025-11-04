@@ -87,7 +87,7 @@ export default function ui() {
 
   function placeShipsOnBoard(player1, player2) {
     return new Promise((resolve) => {
-      const valori = [];
+      const valori1 = [];
       const valori2 = [];
       const randomizeBttn1 = document.querySelector(
         ".player-1-randomize__ship"
