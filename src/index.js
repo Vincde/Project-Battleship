@@ -20,16 +20,9 @@ UI.chooseNumberOfPlayers().then((numPlayers) => {
     player2 = player("User2");
   }
 
-  player1.playerGameBoard.placeShip(3, 4, 3, "h");
-  player1.playerGameBoard.placeShip(6, 3, 3, "v");
-  player1.playerGameBoard.placeShip(1, 8, 2, "v");
-  player1.playerGameBoard.placeShip(7, 5, 4, "h");
-
-  player2.playerGameBoard.placeShip(7, 1, 5, "h");
-  player2.playerGameBoard.placeShip(3, 3, 5, "v");
-  player2.playerGameBoard.placeShip(1, 5, 2, "h");
-  player2.playerGameBoard.placeShip(7, 5, 4, "h");
-
-  UI.showShips(player1.playerGameBoard, player2.playerGameBoard);
-  UI.attackEvent(player1, player2);
+  UI.placeShipsOnBoard(player1, player2).then(() => {
+    UI.showShips(player1.playerGameBoard, player2.playerGameBoard);
+    UI.attackEvent(player1, player2);
+    console.log("done");
+  });
 });

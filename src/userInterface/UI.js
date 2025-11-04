@@ -85,6 +85,35 @@ export default function ui() {
     });
   }
 
+  function placeShipsOnBoard(player1, player2) {
+    return new Promise((resolve) => {
+      const valori = [];
+      const valori2 = [];
+      const randomizeBttn1 = document.querySelector(
+        ".player-1-randomize__ship"
+      );
+      const randomizeBttn2 = document.querySelector(
+        ".player-2-randomize__ship"
+      );
+      const placeButton1 = document.querySelector(".player-1-randomize__place");
+      const placeButton2 = document.querySelector(".player-2-randomize__place");
+
+      randomizeBttn1.addEventListener("click", () => {
+        const row = Math.floor(Math.random() * 10);
+        const column = Math.floor(Math.random() * 10);
+        const length = Math.floor(Math.random() * 4 + 2);
+        const direction = Math.round(Math.random()) === 1 ? "v" : "h";
+        valori1 = [row, column, length, direction];
+        // put values into board
+      });
+      randomizeBttn2.addEventListener("click", () => {});
+
+      placeButton1.addEventListener("click", () => {});
+
+      placeButton2.addEventListener("click", () => {});
+    });
+  }
+
   function showShips(player1Board, player2Board) {
     const player1Ships = document.querySelectorAll(
       ".player-1-board__ships > div"
@@ -294,5 +323,6 @@ export default function ui() {
     showShips,
     attackEvent,
     showBoardEvent,
+    placeShipsOnBoard,
   };
 }
