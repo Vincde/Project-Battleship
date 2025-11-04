@@ -140,6 +140,44 @@ export default function ui() {
     }
   }
 
+  function updateUiAfterAttack(
+    res,
+    e,
+    ships,
+    index,
+    playerOpponent,
+    row,
+    column,
+    name
+  ) {
+    const playerShips = ships;
+    if (res === true) {
+      e.currentTarget.style.backgroundColor = "red";
+      playerShips[index].style.backgroundColor = "red";
+      if (
+        playerOpponent.playerGameBoard
+          .getBoardElement(row, column)
+          .ship.getSunk()
+      ) {
+        searchForSunkElement(
+          playerOpponent.playerGameBoard,
+          playerOpponent.playerGameBoard.getBoardElement(row, column),
+          name === 1 ? 1 : 2
+        );
+      }
+    } else if (res === false) {
+      e.currentTarget.style.backgroundColor = "gray";
+      playerShips[index].style.backgroundColor = "gray";
+    }
+  }
+
+  function showGameOver(winnerName) {
+    document.querySelector("body").remove();
+    const finalTitle = document.createElement("h1");
+    finalTitle.textContent = `Game Finished! ${winnerName} won!`;
+    document.querySelector("html").appendChild(finalTitle);
+  }
+
   function handleAttackShip(
     e,
     row,
@@ -162,30 +200,19 @@ export default function ui() {
       return null;
     }
     const res = playerOpponent.playerGameBoard.receiveAttack(row, column);
-    if (res === true) {
-      e.currentTarget.style.backgroundColor = "red";
-      playerShips[index].style.backgroundColor = "red";
-      if (
-        playerOpponent.playerGameBoard
-          .getBoardElement(row, column)
-          .ship.getSunk()
-      ) {
-        searchForSunkElement(
-          playerOpponent.playerGameBoard,
-          playerOpponent.playerGameBoard.getBoardElement(row, column),
-          name === 1 ? 1 : 2
-        );
-      }
-      if (playerOpponent.playerGameBoard.isGameFinished()) {
-        document.querySelector("body").remove();
-        const finalTitle = document.createElement("h1");
-        finalTitle.textContent = `Game Finished! ${player.playerName} won!`;
-        document.querySelector("html").appendChild(finalTitle);
-        // change this to make a better final screen
-      }
-    } else if (res === false) {
-      e.currentTarget.style.backgroundColor = "gray";
-      playerShips[index].style.backgroundColor = "gray";
+    updateUiAfterAttack(
+      res,
+      e,
+      playerShips,
+      index,
+      playerOpponent,
+      row,
+      column,
+      name
+    );
+
+    if (playerOpponent.playerGameBoard.isGameFinished()) {
+      showGameOver(player.playerName);
     }
 
     disablePlayer.inert = true;
@@ -225,45 +252,6 @@ export default function ui() {
         const column = j;
 
         player1Shots[index].addEventListener("click", (e) => {
-          /* if (e.currentTarget.style.backgroundColor !== "white") {
-            return null;
-          }
-          const res = player2.playerGameBoard.receiveAttack(row, column);
-          if (res === true) {
-            e.currentTarget.style.backgroundColor = "red";
-            player2Ships[index].style.backgroundColor = "red";
-            if (
-              player2.playerGameBoard
-                .getBoardElement(row, column)
-                .ship.getSunk()
-            ) {
-              searchForSunkElement(
-                player2.playerGameBoard,
-                player2.playerGameBoard.getBoardElement(row, column),
-                1
-              );
-            }
-            if (player2.playerGameBoard.isGameFinished()) {
-              document.querySelector("body").remove();
-              const finalTitle = document.createElement("h1");
-              finalTitle.textContent = `Game Finished! ${player1.playerName} won!`;
-              document.querySelector("html").appendChild(finalTitle);
-              // change this to make a better final screen
-            }
-          } else if (res === false) {
-            e.currentTarget.style.backgroundColor = "gray";
-            player2Ships[index].style.backgroundColor = "gray";
-          }
-
-          disablePlayer1.inert = true;
-          disablePlayer2.inert = false;
-
-          if (player2.playerName === null) {
-            const random = player2.randomizeAttack();
-            player2Shots[random].click();
-          }
-
-          return null; */
           handleAttackShip(
             e,
             row,
@@ -280,39 +268,6 @@ export default function ui() {
         });
 
         player2Shots[index].addEventListener("click", (e) => {
-          /* if (e.currentTarget.style.backgroundColor !== "white") {
-            return null;
-          }
-          const res = player1.playerGameBoard.receiveAttack(row, column);
-          if (res === true) {
-            e.currentTarget.style.backgroundColor = "red";
-            player1Ships[index].style.backgroundColor = "red";
-            if (
-              player1.playerGameBoard
-                .getBoardElement(row, column)
-                .ship.getSunk()
-            ) {
-              searchForSunkElement(
-                player1.playerGameBoard,
-                player1.playerGameBoard.getBoardElement(row, column),
-                2
-              );
-            }
-            if (player1.playerGameBoard.isGameFinished()) {
-              document.querySelector("body").remove();
-              const finalTitle = document.createElement("h1");
-              finalTitle.textContent = `Game Finished! ${player1.playerName} won!`;
-              document.querySelector("html").appendChild(finalTitle);
-              // change this to make a better final screen
-            }
-          } else if (res === false) {
-            e.currentTarget.style.backgroundColor = "gray";
-            player1Ships[index].style.backgroundColor = "gray";
-          }
-
-          disablePlayer2.inert = true;
-          disablePlayer1.inert = false;
-          return null; */
           handleAttackShip(
             e,
             row,
