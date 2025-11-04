@@ -85,10 +85,27 @@ export default function ui() {
     });
   }
 
+  function generateShipValues() {
+    let row = Math.floor(Math.random() * 10);
+    let column = Math.floor(Math.random() * 10);
+    const length = Math.floor(Math.random() * 4 + 2);
+    const direction = Math.round(Math.random()) === 1 ? "v" : "h";
+
+    while (
+      (direction === "v" && row + length > 9) ||
+      (direction === "h" && column + length > 9)
+    ) {
+      if (direction === "v") row = Math.floor(Math.random() * 10);
+      else column = Math.floor(Math.random() * 10);
+    }
+
+    return [row, column, length, direction];
+  }
+
   function placeShipsOnBoard(player1, player2) {
     return new Promise((resolve) => {
-      const valori1 = [];
-      const valori2 = [];
+      let valori1 = [];
+      let valori2 = [];
       const randomizeBttn1 = document.querySelector(
         ".player-1-randomize__ship"
       );
@@ -99,14 +116,11 @@ export default function ui() {
       const placeButton2 = document.querySelector(".player-2-randomize__place");
 
       randomizeBttn1.addEventListener("click", () => {
-        const row = Math.floor(Math.random() * 10);
-        const column = Math.floor(Math.random() * 10);
-        const length = Math.floor(Math.random() * 4 + 2);
-        const direction = Math.round(Math.random()) === 1 ? "v" : "h";
-        valori1 = [row, column, length, direction];
-        // put values into board
+        valori1 = generateShipValues();
       });
-      randomizeBttn2.addEventListener("click", () => {});
+      randomizeBttn2.addEventListener("click", () => {
+        valori2 = generateShipValues();
+      });
 
       placeButton1.addEventListener("click", () => {});
 
