@@ -2,6 +2,7 @@ import "./style.css";
 import "./css/score.css";
 import "./css/logo.css";
 import "./css/gameboard.css";
+import "./css/temporaryShip.css";
 import player from "./player/player";
 import ui from "./userInterface/UI";
 import computer from "./player/computer";

@@ -102,30 +102,45 @@ export default function ui() {
     return [row, column, length, direction];
   }
 
-  function placeShipsOnBoard(player1, player2) {
-    return new Promise((resolve) => {
-      let valori1 = [];
-      let valori2 = [];
-      const randomizeBttn1 = document.querySelector(
-        ".player-1-randomize__ship"
-      );
-      const randomizeBttn2 = document.querySelector(
-        ".player-2-randomize__ship"
-      );
-      const placeButton1 = document.querySelector(".player-1-randomize__place");
-      const placeButton2 = document.querySelector(".player-2-randomize__place");
+  function verifyValues([row, column, length, direction], player) {
+    if (direction === "v") {
+      for (let i = row; i < row + length; i += 1) {
+        if (player.playerGameBoard.getBoardElement(i, column)) return false;
+      }
+      player.playerGameBoard.getBoardElement();
+    } else if (direction === "h") {
+      for (let i = column; i < column + length; i += 1) {
+        if (player.playerGameBoard.getBoardElement(row, i)) return false;
+      }
+    }
 
-      randomizeBttn1.addEventListener("click", () => {
-        valori1 = generateShipValues();
-      });
-      randomizeBttn2.addEventListener("click", () => {
-        valori2 = generateShipValues();
-      });
+    return true;
+  }
 
-      placeButton1.addEventListener("click", () => {});
+  function placeTemporaryShipOntoBoard([row, column, length, direction], num) {
+    let boardShips;
 
-      placeButton2.addEventListener("click", () => {});
-    });
+    if (num === 1) {
+      boardShips = document.querySelectorAll(".player-1-board__ships > div");
+    } else if (num === 2) {
+      boardShips = document.querySelectorAll(".player-2-board__ships > div");
+    }
+
+    for (let i = 0; i < 100; i += 1) {
+      boardShips[i].classList.remove("temporaryShip");
+    }
+
+    if (direction === "v") {
+      for (let i = 0; i < length; i += 1) {
+        boardShips[row * 10 + column + i * 10].classList.add("temporaryShip");
+        console.log(row, column, length, direction);
+      }
+    } else if (direction === "h") {
+      for (let i = 0; i < length; i += 1) {
+        boardShips[row * 10 + column + i].classList.add("temporaryShip");
+        console.log(row, column, length, direction);
+      }
+    }
   }
 
   function showShips(player1Board, player2Board) {
@@ -153,6 +168,54 @@ export default function ui() {
         count += 1;
       }
     }
+  }
+
+  function placeShipsOnBoard(player1, player2) {
+    return new Promise((resolve) => {
+      let valori1 = [];
+      let valori2 = [];
+      const randomizeBttn1 = document.querySelector(
+        ".player-1-randomize__ship"
+      );
+      const randomizeBttn2 = document.querySelector(
+        ".player-2-randomize__ship"
+      );
+      const placeButton1 = document.querySelector(".player-1-randomize__place");
+      const placeButton2 = document.querySelector(".player-2-randomize__place");
+
+      randomizeBttn1.addEventListener("click", () => {
+        valori1 = generateShipValues();
+        if (verifyValues(valori1, player1)) {
+          placeTemporaryShipOntoBoard(valori1, 1);
+        }
+      });
+      randomizeBttn2.addEventListener("click", () => {
+        valori2 = generateShipValues();
+        if (verifyValues(valori2, player2)) {
+          placeTemporaryShipOntoBoard(valori2, 2);
+        }
+      });
+
+      placeButton1.addEventListener("click", () => {
+        player1.playerGameBoard.placeShip(
+          valori1[0],
+          valori1[1],
+          valori1[2],
+          valori1[3]
+        );
+        showShips(player1.playerGameBoard, player2.playerGameBoard);
+      });
+
+      placeButton2.addEventListener("click", () => {
+        player2.playerGameBoard.placeShip(
+          valori2[0],
+          valori2[1],
+          valori2[2],
+          valori2[3]
+        );
+        showShips(player1.playerGameBoard, player2.playerGameBoard);
+      });
+    });
   }
 
   function searchForSunkElement(playerGameBoard, element, player) {
