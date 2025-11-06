@@ -107,7 +107,6 @@ export default function ui() {
       for (let i = row; i < row + length; i += 1) {
         if (player.playerGameBoard.getBoardElement(i, column)) return false;
       }
-      player.playerGameBoard.getBoardElement();
     } else if (direction === "h") {
       for (let i = column; i < column + length; i += 1) {
         if (player.playerGameBoard.getBoardElement(row, i)) return false;
@@ -131,14 +130,12 @@ export default function ui() {
     }
 
     if (direction === "v") {
-      for (let i = 0; i < length; i += 1) {
-        boardShips[row * 10 + column + i * 10].classList.add("temporaryShip");
-        console.log(row, column, length, direction);
+      for (let i = row; i < row + length; i += 1) {
+        boardShips[i * 10 + column].classList.add("temporaryShip");
       }
     } else if (direction === "h") {
-      for (let i = 0; i < length; i += 1) {
-        boardShips[row * 10 + column + i].classList.add("temporaryShip");
-        console.log(row, column, length, direction);
+      for (let i = column; i < column + length; i += 1) {
+        boardShips[row * 10 + i].classList.add("temporaryShip");
       }
     }
   }
@@ -185,15 +182,17 @@ export default function ui() {
 
       randomizeBttn1.addEventListener("click", () => {
         valori1 = generateShipValues();
-        if (verifyValues(valori1, player1)) {
-          placeTemporaryShipOntoBoard(valori1, 1);
+        while (!verifyValues(valori1, player1)) {
+          valori1 = generateShipValues();
         }
+        placeTemporaryShipOntoBoard(valori1, 1);
       });
       randomizeBttn2.addEventListener("click", () => {
         valori2 = generateShipValues();
-        if (verifyValues(valori2, player2)) {
-          placeTemporaryShipOntoBoard(valori2, 2);
+        while (!verifyValues(valori2, player2)) {
+          valori2 = generateShipValues();
         }
+        placeTemporaryShipOntoBoard(valori2, 2);
       });
 
       placeButton1.addEventListener("click", () => {
