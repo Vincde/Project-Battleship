@@ -169,6 +169,7 @@ export default function ui() {
 
   function placeShipsOnBoard(player1, player2) {
     return new Promise((resolve) => {
+      const startGame = document.querySelector(".start-game");
       let valori1 = [];
       let valori2 = [];
       const randomizeBttn1 = document.querySelector(
@@ -213,6 +214,15 @@ export default function ui() {
           valori2[3]
         );
         showShips(player1.playerGameBoard, player2.playerGameBoard);
+      });
+
+      startGame.addEventListener("click", () => {
+        placeButton1.parentElement.removeChild(placeButton1);
+        placeButton2.parentElement.removeChild(placeButton2);
+        randomizeBttn1.parentElement.removeChild(randomizeBttn1);
+        randomizeBttn2.parentElement.removeChild(randomizeBttn2);
+        startGame.parentElement.removeChild(startGame);
+        resolve();
       });
     });
   }
