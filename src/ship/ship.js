@@ -1,6 +1,6 @@
 function ship(shipLength) {
   let nTimesHit = 0;
-  let length = shipLength;
+  const length = shipLength;
 
   function hit() {
     nTimesHit += 1;
